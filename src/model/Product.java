@@ -1,17 +1,14 @@
 package model;
 
-/**
- * Supplied class Part.java
- */
-
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
  *
  * @author Place Your Name Here
  */
-public abstract class Product {
-    //ObservableList<Part> associatedParts= new ObservableList<Part>(n);
+public class Product {
+    private static ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private int id;
     private String name;
     private double price;
@@ -113,7 +110,12 @@ public abstract class Product {
     }
 
 
-   //TODO  public void addAssociatePart(Part part){}
+   public static void addAssociatePart(Part part){
+        //associatedParts.add(Part);
+       // ObservableList<Part> associateParts = FXCollections.observableArrayList();
+       // associateParts.add(new Part());
+
+   }
 
    //TODO public deleteAssociatedPart(){
     // boolean ;}
