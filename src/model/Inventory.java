@@ -2,6 +2,12 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+//import javafx.fxml.FXML;
+
+
+
+import javax.swing.table.TableColumn;
+import javax.swing.text.TableView;
 
 public class Inventory {
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
@@ -25,4 +31,9 @@ public class Inventory {
     }
 
 
+
+
 }
+
+
+
