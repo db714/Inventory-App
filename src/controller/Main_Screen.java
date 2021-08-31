@@ -142,7 +142,15 @@ public class Main_Screen implements Initializable {
     public void onActionPartDel(ActionEvent actionEvent) {
     }
 
-    public void onActionPartMod(ActionEvent actionEvent) {
+    public void onActionPartMod(ActionEvent actionEvent) throws IOException {
+     //casting to the button on main
+     stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+     //telling program where we want it to go once button is clicked
+     scene = FXMLLoader.load(getClass().getResource("/view/Modify_Part.fxml"));
+     //program makes new scene
+     stage.setScene(new Scene(scene));
+     //new scene starts
+     stage.show();
     }
 
     public void onActionProdDel(ActionEvent actionEvent) {
