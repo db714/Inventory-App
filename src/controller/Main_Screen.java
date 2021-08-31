@@ -135,7 +135,8 @@ public class Main_Screen implements Initializable {
     }
 
     public void onActionMainExit(ActionEvent actionEvent) {
-        System.out.println("This should exit the program!!!!");
+
+     System.exit(0);
     }
 
     public void onActionPartDel(ActionEvent actionEvent) {
