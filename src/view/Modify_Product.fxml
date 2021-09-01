@@ -9,17 +9,16 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Modify_Product">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="554.0" layoutX="19.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 15px; -fx-arc-width: 15px;" width="895.0" />
-      <TextField layoutX="119.0" layoutY="116.0" />
-      <TextField layoutX="119.0" layoutY="159.0" />
-      <TextField layoutX="119.0" layoutY="203.0" />
-      <TextField layoutX="119.0" layoutY="248.0" />
-      <TextField layoutX="333.0" layoutY="293.0" />
-      <TextField layoutX="119.0" layoutY="293.0" />
-      <TextField layoutX="753.0" layoutY="59.0" />
+      <TextField fx:id="modProIDTxt" layoutX="119.0" layoutY="116.0" onAction="#onActionModProID" />
+      <TextField fx:id="modProNameTxt" layoutX="119.0" layoutY="159.0" onAction="#onActionModProName" />
+      <TextField fx:id="modProInvTxt" layoutX="119.0" layoutY="203.0" onAction="#onActionModProInv" />
+      <TextField fx:id="modProPriceTxt" layoutX="119.0" layoutY="248.0" onAction="#onActionModProPrice" />
+      <TextField fx:id="modProMinTxt" layoutX="333.0" layoutY="293.0" onAction="#onActionModProMin" />
+      <TextField fx:id="modProMaxTxt" layoutX="119.0" layoutY="293.0" onAction="#onActionModProMax" />
+      <TextField fx:id="modProSearchTxt" layoutX="753.0" layoutY="59.0" onAction="#onActionModProSearch" />
       <Label layoutX="57.0" layoutY="57.0" text="Modify Product">
          <font>
             <Font name="Arial Black" size="18.0" />
@@ -31,24 +30,24 @@
       <Label layoutX="64.0" layoutY="252.0" text="Price" />
       <Label layoutX="68.0" layoutY="297.0" text="Max" />
       <Label layoutX="290.0" layoutY="297.0" text="Min" />
-      <Button layoutX="786.0" layoutY="273.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="741.0" layoutY="479.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Remove Associated Part" />
-      <Button layoutX="815.0" layoutY="520.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="741.0" layoutY="520.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Save" />
-      <TableView layoutX="567.0" layoutY="101.0" prefHeight="152.0" prefWidth="335.0">
+      <Button fx:id="modProAddBut" layoutX="786.0" layoutY="273.0" mnemonicParsing="false" onAction="#onActionModProAdd" text="Add" />
+      <Button fx:id="modProRmvBut" layoutX="741.0" layoutY="479.0" mnemonicParsing="false" onAction="#onActionModProRmv" prefHeight="25.0" prefWidth="148.0" text="Remove Associated Part" />
+      <Button fx:id="modProCnclBut" layoutX="815.0" layoutY="520.0" mnemonicParsing="false" onAction="#onActionModProCncl" text="Cancel" />
+      <Button fx:id="modProSaveBut" layoutX="741.0" layoutY="520.0" mnemonicParsing="false" onAction="#onActionModProSave" prefHeight="25.0" prefWidth="45.0" text="Save" />
+      <TableView fx:id="modProSlctTable" layoutX="567.0" layoutY="101.0" prefHeight="152.0" prefWidth="335.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="108.0" text="C2" />
+          <TableColumn fx:id="modProSlctPartIDCol" prefWidth="75.0" text="Part ID" />
+          <TableColumn fx:id="modProSlctPartNameCol" prefWidth="75.0" text="Part Name" />
+            <TableColumn fx:id="modProSlctPartInvCol" prefWidth="75.0" text="Inventory Level" />
+            <TableColumn fx:id="modProSlctPartPriceCol" prefWidth="108.0" text="Price/Cost per Unit" />
         </columns>
       </TableView>
-      <TableView layoutX="567.0" layoutY="314.0" prefHeight="152.0" prefWidth="335.0">
+      <TableView fx:id="modProdAssPTable" layoutX="567.0" layoutY="314.0" prefHeight="152.0" prefWidth="335.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="109.0" text="C2" />
+            <TableColumn fx:id="modProdAssPIDCol" prefWidth="75.0" text="Part ID" />
+            <TableColumn fx:id="modProdAssPNameCol" prefWidth="75.0" text="Part Name " />
+            <TableColumn fx:id="modProdAssPInvCol" prefWidth="75.0" text="Inventory Level" />
+            <TableColumn fx:id="modProdAssPPrideCol" prefWidth="109.0" text="Price/Cost per Unit" />
          </columns>
       </TableView>
    </children>

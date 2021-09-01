@@ -169,7 +169,16 @@ public class Main_Screen implements Initializable {
 
     }
 
-    public void onActionProdMod(ActionEvent actionEvent) {
+    public void onActionProdMod(ActionEvent actionEvent) throws IOException {
+     //casting to the button on main
+     stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+     //telling program where we want it to go once button is clicked
+     scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
+     //program makes new scene
+     stage.setScene(new Scene(scene));
+     //new scene starts
+     stage.show();
+
     }
 
     //productTableView.setItems(Inventory.getAllProducts());

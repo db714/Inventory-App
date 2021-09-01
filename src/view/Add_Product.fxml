@@ -10,20 +10,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Add_Product">
    <children>
       <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="936.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="554.0" layoutX="19.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 15px; -fx-arc-width: 15px;" width="895.0" />
-            <TextField layoutX="119.0" layoutY="116.0" />
-            <TextField layoutX="119.0" layoutY="159.0" />
-            <TextField layoutX="119.0" layoutY="203.0" />
-            <TextField layoutX="119.0" layoutY="248.0" />
-            <TextField layoutX="333.0" layoutY="293.0" />
-            <TextField layoutX="119.0" layoutY="293.0" />
-            <TextField layoutX="753.0" layoutY="59.0" />
-            <Label layoutX="57.0" layoutY="57.0" text="Modify Product">
+            <TextField fx:id="addProdIDTxt" layoutX="119.0" layoutY="116.0" onAction="#onActionAddProdID" />
+            <TextField fx:id="addProdNameTxt" layoutX="119.0" layoutY="159.0" onAction="#onActionAddProdName" />
+            <TextField fx:id="addProdInvTxt" layoutX="119.0" layoutY="203.0" onAction="#onActionAddProdInv" />
+            <TextField fx:id="addProdPriceTxt" layoutX="119.0" layoutY="248.0" onAction="#onActionAddProdPrice" />
+            <TextField fx:id="addProdMinTxt" layoutX="333.0" layoutY="293.0" onAction="#onActionAddProdMin" />
+            <TextField fx:id="addProdMaxTxt" layoutX="119.0" layoutY="293.0" onAction="#onActionAddProdMax" />
+            <TextField fx:id="addProdSrchTxt" layoutX="753.0" layoutY="59.0" onAction="#onActionAddProdSrch" />
+            <Label layoutX="57.0" layoutY="57.0" text="Add Product">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
@@ -34,24 +33,24 @@
             <Label layoutX="64.0" layoutY="252.0" text="Price" />
             <Label layoutX="68.0" layoutY="297.0" text="Max" />
             <Label layoutX="290.0" layoutY="297.0" text="Min" />
-            <Button layoutX="786.0" layoutY="273.0" mnemonicParsing="false" text="Add" />
-            <Button layoutX="741.0" layoutY="479.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Remove Associated Part" />
-            <Button layoutX="815.0" layoutY="520.0" mnemonicParsing="false" text="Cancel" />
-            <Button layoutX="741.0" layoutY="520.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="45.0" text="Save" />
-            <TableView layoutX="567.0" layoutY="101.0" prefHeight="152.0" prefWidth="335.0">
+            <Button fx:id="addProdAddBut" layoutX="786.0" layoutY="273.0" mnemonicParsing="false" onAction="#onActionAddProdAdd" text="Add" />
+            <Button fx:id="addProdRmvBut" layoutX="741.0" layoutY="479.0" mnemonicParsing="false" onAction="#onActionAddProdRmv" prefHeight="25.0" prefWidth="148.0" text="Remove Associated Part" />
+            <Button fx:id="addProdCnclBut" layoutX="815.0" layoutY="520.0" mnemonicParsing="false" onAction="#onActionAddProdCncl" text="Cancel" />
+            <Button fx:id="addProdSaveBut" layoutX="741.0" layoutY="520.0" mnemonicParsing="false" onAction="#onActionAddProdSave" prefHeight="25.0" prefWidth="45.0" text="Save" />
+            <TableView fx:id="addProdPartTable" layoutX="567.0" layoutY="101.0" prefHeight="152.0" prefWidth="335.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
-                  <TableColumn prefWidth="75.0" text="C2" />
-                  <TableColumn prefWidth="108.0" text="C2" />
+                  <TableColumn fx:id="addProdPartIDCol" prefWidth="75.0" text="Part ID" />
+                  <TableColumn fx:id="addProdPartNameCol" prefWidth="75.0" text="Part Name" />
+                  <TableColumn fx:id="addProdPartInvCol" prefWidth="75.0" text="Inventory Level" />
+                  <TableColumn fx:id="addProdPartPriceCol" prefWidth="108.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>
-            <TableView layoutX="567.0" layoutY="314.0" prefHeight="152.0" prefWidth="335.0">
+            <TableView fx:id="addProdSlctPartTable" layoutX="567.0" layoutY="314.0" prefHeight="152.0" prefWidth="335.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
-                  <TableColumn prefWidth="75.0" text="C2" />
-                  <TableColumn prefWidth="109.0" text="C2" />
+                  <TableColumn fx:id="addProdAssPartIDCol" prefWidth="75.0" text="Part ID" />
+                  <TableColumn fx:id="addProdAssPartNameCol" prefWidth="75.0" text="Part Name" />
+                  <TableColumn fx:id="addProdAssPartInvCol" prefWidth="75.0" text="Inventory" />
+                  <TableColumn fx:id="addProdAssPartPriceCol" prefWidth="109.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>
          </children>
