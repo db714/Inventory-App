@@ -23,6 +23,7 @@ public class Inventory {
     }
 
     public static ObservableList<Product> getAllProducts(){
+
         return allProducts;
     }
 

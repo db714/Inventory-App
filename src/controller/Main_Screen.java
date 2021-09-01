@@ -8,12 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Product;
 
-import javax.swing.table.TableColumn;
-import javax.swing.text.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +26,7 @@ public class Main_Screen implements Initializable {
  Parent scene;
 
 
-   /* @FXML
+    @FXML
     private TableView<?> partMainTableview;
 
     @FXML
@@ -41,20 +42,20 @@ public class Main_Screen implements Initializable {
     private TableColumn<?, ?> partPriceMainCol;
 
     @FXML
-    private TableView<?> prodMainTableview;
+    private TableView<Product> prodMainTableview;
 
     @FXML
-    private TableColumn<?, ?> prodIDMainCol;
+    private TableColumn<Product, Integer> prodIDMainCol;
 
     @FXML
-    private TableColumn<?, ?> prodNameMainCol;
+    private TableColumn<Product, String> prodNameMainCol;
 
     @FXML
-    private TableColumn<?, ?> prodInvMainCol;
+    private TableColumn<Product, Integer> prodInvMainCol;
 
     @FXML
-    private TableColumn<?, ?> prodPriceMainCol;
-*/
+    private TableColumn<Product, Double> prodPriceMainCol;
+
     @FXML
     private Button mainExitBut;
 
@@ -120,6 +121,14 @@ public class Main_Screen implements Initializable {
 
    @Override
    public void initialize(URL url, ResourceBundle rb){
+
+    prodMainTableview.setItems(Inventory.getAllProducts());
+
+    prodIDMainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+    prodNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+    prodInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+    prodPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
 
    }
 

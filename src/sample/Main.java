@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Inventory;
+import model.Product;
 import org.w3c.dom.ls.LSOutput;
 
 public class Main extends Application {
@@ -21,6 +23,12 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        //Test product object
+        Product product1 = new Product(1,"Toy", 5.99, 5, 1,2);
+
+        //adding test product1 above to observable list
+        Inventory.addProduct(product1);
+
         launch(args);
     } {
 
