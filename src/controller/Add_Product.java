@@ -136,7 +136,7 @@ public class Add_Product {
     }
 
     @FXML
-    void onActionAddProdSave(ActionEvent event) {
+    void onActionAddProdSave(javafx.event.ActionEvent actionEvent) throws IOException {
         //Parses the text fields and converts them to the appropriate primitive
         int id = Integer.parseInt(addProdIDTxt.getText());
         String name = addProdNameTxt.getText();
@@ -145,7 +145,17 @@ public class Add_Product {
         int min = Integer.parseInt(addProdMinTxt.getText());
         int max = Integer.parseInt(addProdMaxTxt.getText());
 
+        //To make it easier, make variable names above match the object variable names
         Inventory.addProduct(new Product(id, name, stock, price, min, max));
+
+        //----This block of code takes you back to main after you input new object----
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        //telling program where we want it to go once button is clicked
+        scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
+        //program makes new scene
+        stage.setScene(new Scene((Parent) scene));
+        //new scene starts
+        stage.show();
 
 
     }

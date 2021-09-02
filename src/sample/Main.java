@@ -24,7 +24,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //Test product object
-        Product product1 = new Product(1,"Toy", 5.99, 5, 1,2);
+        Product product1 = new Product(1,"Toy", 3, 5.99, 1,2);
 
         //adding test product1 above to observable list
         Inventory.addProduct(product1);
