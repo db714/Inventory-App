@@ -10,6 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Inventory;
+import model.Product;
 
 import java.io.IOException;
 
@@ -135,6 +137,16 @@ public class Add_Product {
 
     @FXML
     void onActionAddProdSave(ActionEvent event) {
+        //Parses the text fields and converts them to the appropriate primitive
+        int id = Integer.parseInt(addProdIDTxt.getText());
+        String name = addProdNameTxt.getText();
+        int stock = Integer.parseInt(addProdInvTxt.getText());
+        double price = Double.parseDouble(addProdPriceTxt.getText());
+        int min = Integer.parseInt(addProdMinTxt.getText());
+        int max = Integer.parseInt(addProdMaxTxt.getText());
+
+        Inventory.addProduct(new Product(id, name, stock, price, min, max));
+
 
     }
 
