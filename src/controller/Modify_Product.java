@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Product;
 
 import java.io.IOException;
 
@@ -142,6 +143,16 @@ public class Modify_Product {
     @FXML
     void onActionModProSearch(ActionEvent event) {
 
+    }
+
+    public void receiveProduct(Product product){
+        //Getting different value getters and placing them inside text fields (sometimes converting ints to strings)
+        modProIDTxt.setText(String.valueOf(product.getId()));
+        modProNameTxt.setText(product.getName());
+        modProInvTxt.setText(String.valueOf(product.getStock()));
+        modProPriceTxt.setText(String.valueOf(product.getPrice()));
+        modProMaxTxt.setText(String.valueOf(product.getMax()));
+        modProMinTxt.setText(String.valueOf(product.getMin()));
     }
 
 }
