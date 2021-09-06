@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Inventory;
 import model.Product;
 
 import java.io.IOException;
@@ -136,7 +137,28 @@ public class Modify_Product {
     }
 
     @FXML
-    void onActionModProSave(ActionEvent event) {
+    void onActionModProSave(javafx.event.ActionEvent actionEvent) throws IOException {
+        //Parses the text fields and converts them to the appropriate primitive
+        int id = Integer.parseInt(modProIDTxt.getText());
+        String name = modProNameTxt.getText();
+        int stock = Integer.parseInt(modProInvTxt.getText());
+        double price = Double.parseDouble(modProPriceTxt.getText());
+        int min = Integer.parseInt(modProMinTxt.getText());
+        int max = Integer.parseInt(modProMaxTxt.getText());
+
+        //To make it easier, make variable names above match the object variable names
+        Inventory.addProduct(new Product(id, name, stock, price, min, max));
+
+        //----This block of code takes you back to main after you input new object----
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        //telling program where we want it to go once button is clicked
+        scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
+        //program makes new scene
+        stage.setScene(new Scene((Parent) scene));
+        //new scene starts
+        stage.show();
+
+
 
     }
 

@@ -162,7 +162,7 @@ public class Main_Screen implements Initializable {
     public void onActionPartDel(ActionEvent actionEvent) {
     }
 
-    public void onActionPartMod(ActionEvent actionEvent) throws IOException {
+   /* public void onActionPartMod(ActionEvent actionEvent) throws IOException {
      //casting to the button on main
      stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
      //telling program where we want it to go once button is clicked
@@ -171,8 +171,35 @@ public class Main_Screen implements Initializable {
      stage.setScene(new Scene(scene));
      //new scene starts
      stage.show();
-    }
+    }*/
+   public void onActionPartMod(ActionEvent actionEvent) throws IOException {
 
+       //to use loader() methods you must first instantiate
+       FXMLLoader loader = new FXMLLoader();
+       //identifying the destination location
+       loader.setLocation(getClass().getResource("/view/Modify_Part.fxml"));
+       //loading(with the loader instance)
+       loader.load();
+       //creating an instance for the second controller so methods can be used from that class
+       Modify_Part modProdController = loader.getController();
+       //sending selected items from the tableview to place in the modProd controller screen
+       modProdController.receivePart(partMainTableview.getSelectionModel().getSelectedItem());
+
+
+       //casting to the button on main
+       stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+       Parent scene = loader.getRoot();
+       //telling program where we want it to go once button is clicked
+       //scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
+       //program makes new scene
+       stage.setScene(new Scene(scene));
+       //new scene starts
+       stage.show();
+
+
+
+
+   }
     public void onActionProdDel(ActionEvent actionEvent) {
     }
 

@@ -10,6 +10,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
+import model.InHouse;
+import model.Inventory;
+import model.Part;
+import model.Product;
 
 import java.io.IOException;
 
@@ -114,8 +118,39 @@ public class Modify_Part {
     }
 
     @FXML
-    public void onActionmodPartSave(ActionEvent event) {
+    public void onActionmodPartSave(javafx.event.ActionEvent actionEvent) throws IOException {
+        //Parses the text fields and converts them to the appropriate primitive
+        int id = Integer.parseInt(modPartIDTxt.getText());
+        String name = modPartNameTxt.getText();
+        int stock = Integer.parseInt(modPartInvTxt.getText());
+        double price = Double.parseDouble(modPartPriceTxt.getText());
+        int min = Integer.parseInt(modPartMinTxt.getText());
+        int max = Integer.parseInt(modPartMaxTxt.getText());
+        int machineId = Integer.parseInt(modPartMacIDTxt.getText());
 
+        //To make it easier, make variable names above match the object variable names
+        Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));
+
+        //----This block of code takes you back to main after you input new object----
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        //telling program where we want it to go once button is clicked
+        scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
+        //program makes new scene
+        stage.setScene(new Scene((Parent) scene));
+        //new scene starts
+        stage.show();
+
+    }
+
+    public void receivePart(Part part){
+        //Getting different value getters and placing them inside text fields (sometimes converting ints to strings)
+        modPartIDTxt.setText(String.valueOf(part.getId()));
+        modPartNameTxt.setText(part.getName());
+        modPartInvTxt.setText(String.valueOf(part.getStock()));
+        modPartPriceTxt.setText(String.valueOf(part.getPrice()));
+        modPartMaxTxt.setText(String.valueOf(part.getMax()));
+        modPartMinTxt.setText(String.valueOf(part.getMin()));
+      //TODO  modPartMacIDTxt.setText(String.valueOf(InHouse.getMachineId()));
     }
 
 }
