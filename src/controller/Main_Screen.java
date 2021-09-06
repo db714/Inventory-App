@@ -12,6 +12,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Product;
+import model.InHouse;
+import model.Outsourced;
+import model.Part;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -27,19 +30,19 @@ public class Main_Screen implements Initializable {
 
 
     @FXML
-    private TableView<?> partMainTableview;
+    private TableView<Part> partMainTableview;
 
     @FXML
-    private TableColumn<?, ?> partIDMainCol;
+    private TableColumn<Part, Integer> partIDMainCol;
 
     @FXML
-    private TableColumn<?, ?> partNameMainCol;
+    private TableColumn<Part, String> partNameMainCol;
 
     @FXML
-    private TableColumn<?, ?> partInvMainCol;
+    private TableColumn<Part, Integer> partInvMainCol;
 
     @FXML
-    private TableColumn<?, ?> partPriceMainCol;
+    private TableColumn<Part, Double> partPriceMainCol;
 
     @FXML
     private TableView<Product> prodMainTableview;
@@ -130,6 +133,14 @@ public class Main_Screen implements Initializable {
     prodPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
 
+    partMainTableview.setItems(Inventory.getAllParts());
+
+       partIDMainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+       partNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+       partInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+       partPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+
    }
 
     public void onActionPartAdd(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -207,6 +218,5 @@ public class Main_Screen implements Initializable {
 
     }
 
-    //productTableView.setItems(Inventory.getAllProducts());
- //   }
+
 }
