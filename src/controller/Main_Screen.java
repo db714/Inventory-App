@@ -228,6 +228,8 @@ public class Main_Screen implements Initializable {
         Modify_Product modProdController = loader.getController();
         //sending selected items from the tableview to place in the modProd controller screen
         modProdController.receiveProduct(prodMainTableview.getSelectionModel().getSelectedItem());
+        //****TESTING****
+        modProdController.receiveTable();
 
 
      //casting to the button on main
