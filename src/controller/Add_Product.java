@@ -9,8 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Inventory;
+import model.Part;
 import model.Product;
 
 import java.io.IOException;
@@ -54,19 +56,19 @@ public class Add_Product {
     private Button addProdSaveBut;
 
     @FXML
-    private TableView<?> addProdPartTable;
+    private TableView<Part> addProdPartTable;
 
     @FXML
-    private TableColumn<?, ?> addProdPartIDCol;
+    private TableColumn<Part, Integer> addProdPartIDCol;
 
     @FXML
-    private TableColumn<?, ?> addProdPartNameCol;
+    private TableColumn<Part, String> addProdPartNameCol;
 
     @FXML
-    private TableColumn<?, ?> addProdPartInvCol;
+    private TableColumn<Part, Integer> addProdPartInvCol;
 
     @FXML
-    private TableColumn<?, ?> addProdPartPriceCol;
+    private TableColumn<Part, Double> addProdPartPriceCol;
 
     @FXML
     private TableView<?> addProdSlctPartTable;
@@ -165,5 +167,14 @@ public class Add_Product {
 
     }
 
+
+    public void receiveTableTwo(){
+        addProdPartTable.setItems(Inventory.getAllParts());
+
+        addProdPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        addProdPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        addProdPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        addProdPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+    }
 }
 
