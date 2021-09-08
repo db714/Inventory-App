@@ -24,9 +24,11 @@ public class Main extends Application {
     public static void main(String[] args) {
         //Test product object
         Product product1 = new Product(1,"Toy", 3, 5.99, 1,2);
+        Product product2 = new Product(5,"Car", 2, 34565.99, 1,7);
 
         //adding test product1 above to observable list
         Inventory.addProduct(product1);
+        Inventory.addProduct(product2);
 
 
         //Test part object
@@ -34,6 +36,13 @@ public class Main extends Application {
 
         //adding test part1 above to observable list
         Inventory.addPart(part1);
+
+        //Test assPart object
+        Part assPart1 = part1;
+
+
+        //adding test assPart1 above to observable list
+        Product.addAssPart(assPart1);
 
         launch(args);
     } {

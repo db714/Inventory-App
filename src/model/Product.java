@@ -110,18 +110,26 @@ public class Product {
     }
 
 
-   public static void addAssociatePart(Part part){
-        //associatedParts.add(Part);
-       // ObservableList<Part> associateParts = FXCollections.observableArrayList();
-       // associateParts.add(new Part());
+    public static void addAssPart(Part part){
+
+        associatedParts.add(part);
+    }
+
+
+    public static ObservableList<Part> getAssParts(){
+
+        return associatedParts;
+    }
+
+
+
 
    }
 
    //TODO public deleteAssociatedPart(){
     // boolean ;}
 
-   //TODO getAllAssociatedParts(){
-    //ObservableList<Part> ;}
 
 
-}
+
+

@@ -71,24 +71,27 @@ public class Add_Product {
     private TableColumn<Part, Double> addProdPartPriceCol;
 
     @FXML
-    private TableView<?> addProdSlctPartTable;
+    private TableView<Part> addProdSlctPartTable;
 
     @FXML
-    private TableColumn<?, ?> addProdAssPartIDCol;
+    private TableColumn<Part, Integer> addProdAssPartIDCol;
 
     @FXML
-    private TableColumn<?, ?> addProdAssPartNameCol;
+    private TableColumn<Part, String> addProdAssPartNameCol;
 
     @FXML
-    private TableColumn<?, ?> addProdAssPartInvCol;
+    private TableColumn<Part, Integer> addProdAssPartInvCol;
 
     @FXML
-    private TableColumn<?, ?> addProdAssPartPriceCol;
+    private TableColumn<Part, Double> addProdAssPartPriceCol;
 
     @FXML
     void onActionAddProdAdd(ActionEvent event) {
 
     }
+
+
+
 
     @FXML
     void onActionAddProdCncl(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -175,6 +178,16 @@ public class Add_Product {
         addProdPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         addProdPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         addProdPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+    }
+
+    public void receiveSlctTable(){
+
+        addProdSlctPartTable.setItems(Product.getAssParts());
+
+        addProdAssPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        addProdAssPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        addProdAssPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        addProdAssPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 }
 

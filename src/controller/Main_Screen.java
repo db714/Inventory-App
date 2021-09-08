@@ -210,6 +210,7 @@ public class Main_Screen implements Initializable {
        loaderAdd.load();
        Add_Product addProdController = loaderAdd.getController();
        addProdController.receiveTableTwo();
+       addProdController.receiveSlctTable();
 
 
        //casting to the button on main
