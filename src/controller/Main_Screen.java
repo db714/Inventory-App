@@ -239,6 +239,7 @@ public class Main_Screen implements Initializable {
         modProdController.receiveProduct(prodMainTableview.getSelectionModel().getSelectedItem());
         //****TESTING****
         modProdController.receiveTable();
+        modProdController.receiveModSlctTable();
 
 
      //casting to the button on main

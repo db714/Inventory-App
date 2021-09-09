@@ -71,22 +71,24 @@ public class Modify_Product {
     private TableColumn<Part, Double> modProSlctPartPriceCol;
 
     @FXML
-    private TableView<?> modProdAssPTable;
+    private TableView<Part> modProdAssPTable;
 
     @FXML
-    private TableColumn<?, ?> modProdAssPIDCol;
+    private TableColumn<Part, Integer> modProdAssPIDCol;
 
     @FXML
-    private TableColumn<?, ?> modProdAssPNameCol;
+    private TableColumn<Part, String> modProdAssPNameCol;
 
     @FXML
-    private TableColumn<?, ?> modProdAssPInvCol;
+    private TableColumn<Part, Integer> modProdAssPInvCol;
 
     @FXML
-    private TableColumn<?, ?> modProdAssPPrideCol;
+    private TableColumn<Part, Double> modProdAssPPrideCol;
 
     @FXML
     void onActionModProAdd(ActionEvent event) {
+
+
 
     }
 
@@ -186,5 +188,15 @@ public class Modify_Product {
         modProSlctPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         modProSlctPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         modProSlctPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+    }
+
+    public void receiveModSlctTable(){
+
+        modProdAssPTable.setItems(Product.getAssParts());
+
+        modProdAssPIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        modProdAssPNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        modProdAssPInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        modProdAssPPrideCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 }

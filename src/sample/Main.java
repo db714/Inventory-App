@@ -33,6 +33,7 @@ public class Main extends Application {
 
         //Test part object
         Part part1 = new InHouse(1,"Toy", 3, 17.99, 1,2, 2);
+        Part part2 = new InHouse(5,"Basketball", 6, 20.99, 1,2, 2);
 
         //adding test part1 above to observable list
         Inventory.addPart(part1);
@@ -42,7 +43,10 @@ public class Main extends Application {
 
 
         //adding test assPart1 above to observable list
-        Product.addAssPart(assPart1);
+        Product.addAssPart(part1);
+
+        //adding an allPart to assPart
+
 
         launch(args);
     } {

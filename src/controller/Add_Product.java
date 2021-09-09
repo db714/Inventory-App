@@ -88,6 +88,8 @@ public class Add_Product {
     @FXML
     void onActionAddProdAdd(ActionEvent event) {
 
+        Product.addAssPart(addProdPartTable.getSelectionModel().getSelectedItem());
+
     }
 
 
