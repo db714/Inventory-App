@@ -145,7 +145,8 @@ public class Add_Product {
     @FXML
     void onActionAddProdSave(javafx.event.ActionEvent actionEvent) throws IOException {
         //Parses the text fields and converts them to the appropriate primitive
-        int id = Integer.parseInt(addProdIDTxt.getText());
+        //int id = Integer.parseInt(addProdIDTxt.getText());
+        int id = 0;
         String name = addProdNameTxt.getText();
         int stock = Integer.parseInt(addProdInvTxt.getText());
         double price = Double.parseDouble(addProdPriceTxt.getText());

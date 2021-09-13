@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
  */
 public class Product {
     private static ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private static int next_id = 0;
     private int id;
     private String name;
     private double price;
@@ -17,7 +18,8 @@ public class Product {
     private int max;
 
     public Product(int id, String name, int stock, double price, int min, int max) {
-        this.id = id;
+        this.id = ++next_id;
+         // replace to id if doesn't work
         this.name = name;
         this.stock = stock;
         this.price = price;
@@ -37,6 +39,7 @@ public class Product {
      */
     public void setId(int id) {
         this.id = id;
+                //++Product.next_id;
     }
 
     /**

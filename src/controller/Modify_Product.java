@@ -151,7 +151,11 @@ public class Modify_Product {
         int max = Integer.parseInt(modProMaxTxt.getText());
 
         //To make it easier, make variable names above match the object variable names
-        Inventory.addProduct(new Product(id, name, stock, price, min, max));
+        Inventory.update(id, new Product(id,name,stock,price,min,max));
+
+
+
+        //Inventory.addProduct(new Product(id, name, stock, price, min, max));
 
         //----This block of code takes you back to main after you input new object----
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -199,4 +203,33 @@ public class Modify_Product {
         modProdAssPInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         modProdAssPPrideCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
+
+    /*public void update(int id ,Product product){
+        System.out.println("Id is equal to "+ id);
+        int index = -1;
+
+        for( Product x : Inventory.getAllProducts()){
+                index++;
+
+                if(x.getId() == id){
+                    product = x;
+                    Inventory.getAllProducts().set(index, product);
+                            return;
+                }
+        }
+
+
+        *//*for(int i = -1; i < Inventory.getAllProducts().size(); i++){
+            //Inventory.getAllProducts();
+            System.out.println("this array was checked");
+            if(product.getId() == id){
+                Inventory.getAllProducts().set(i, product);
+                System.out.println("this is true");
+                return true;
+
+        }*//*
+
+    }*/
 }
+
+

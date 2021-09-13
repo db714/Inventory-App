@@ -242,6 +242,7 @@ public class Main_Screen implements Initializable {
         modProdController.receiveModSlctTable();
 
 
+
      //casting to the button on main
      stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
      Parent scene = loader.getRoot();
