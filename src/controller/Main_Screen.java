@@ -25,8 +25,8 @@ import java.util.ResourceBundle;
 // TODO remove (((xmlns="http://javafx.com/javafx/16" from Main_Screen.fxml)))
 public class Main_Screen implements Initializable {
 
- Stage stage;
- Parent scene;
+    Stage stage;
+    Parent scene;
 
 
     @FXML
@@ -122,105 +122,104 @@ public class Main_Screen implements Initializable {
     }
 */
 
-   @Override
-   public void initialize(URL url, ResourceBundle rb){
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
-    prodMainTableview.setItems(Inventory.getAllProducts());
+        prodMainTableview.setItems(Inventory.getAllProducts());
 
-    prodIDMainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-    prodNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-    prodInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-    prodPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-
-    partMainTableview.setItems(Inventory.getAllParts());
-
-       partIDMainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-       partNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-       partInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-       partPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+        prodIDMainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        prodNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        prodInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        prodPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
 
-   }
+        partMainTableview.setItems(Inventory.getAllParts());
+
+        partIDMainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        partInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        partPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+
+    }
 
     public void onActionPartAdd(javafx.event.ActionEvent actionEvent) throws IOException {
 
-     stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-     //telling program where we want it to go once button is clicked
-     scene = FXMLLoader.load(getClass().getResource("/view/Add_Part.fxml"));
-     //program makes new scene
-     stage.setScene(new Scene(scene));
-     //new scene starts
-     stage.show();
+        stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        //telling program where we want it to go once button is clicked
+        scene = FXMLLoader.load(getClass().getResource("/view/Add_Part.fxml"));
+        //program makes new scene
+        stage.setScene(new Scene(scene));
+        //new scene starts
+        stage.show();
     }
 
     public void onActionMainExit(ActionEvent actionEvent) {
 
-     System.exit(0);
+        System.exit(0);
     }
 
     public void onActionPartDel(ActionEvent actionEvent) {
     }
 
-   /* public void onActionPartMod(ActionEvent actionEvent) throws IOException {
-     //casting to the button on main
-     stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-     //telling program where we want it to go once button is clicked
-     scene = FXMLLoader.load(getClass().getResource("/view/Modify_Part.fxml"));
-     //program makes new scene
-     stage.setScene(new Scene(scene));
-     //new scene starts
-     stage.show();
-    }*/
-   public void onActionPartMod(ActionEvent actionEvent) throws IOException {
+    /* public void onActionPartMod(ActionEvent actionEvent) throws IOException {
+      //casting to the button on main
+      stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+      //telling program where we want it to go once button is clicked
+      scene = FXMLLoader.load(getClass().getResource("/view/Modify_Part.fxml"));
+      //program makes new scene
+      stage.setScene(new Scene(scene));
+      //new scene starts
+      stage.show();
+     }*/
+    public void onActionPartMod(ActionEvent actionEvent) throws IOException {
 
-       //to use loader() methods you must first instantiate
-       FXMLLoader loader = new FXMLLoader();
-       //identifying the destination location
-       loader.setLocation(getClass().getResource("/view/Modify_Part.fxml"));
-       //loading(with the loader instance)
-       loader.load();
-       //creating an instance for the second controller so methods can be used from that class
-       Modify_Part modProdController = loader.getController();
-       //sending selected items from the tableview to place in the modProd controller screen
-       modProdController.receivePart(partMainTableview.getSelectionModel().getSelectedItem());
-
-
-       //casting to the button on main
-       stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-       Parent scene = loader.getRoot();
-       //telling program where we want it to go once button is clicked
-       //scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
-       //program makes new scene
-       stage.setScene(new Scene(scene));
-       //new scene starts
-       stage.show();
+        //to use loader() methods you must first instantiate
+        FXMLLoader loader = new FXMLLoader();
+        //identifying the destination location
+        loader.setLocation(getClass().getResource("/view/Modify_Part.fxml"));
+        //loading(with the loader instance)
+        loader.load();
+        //creating an instance for the second controller so methods can be used from that class
+        Modify_Part modProdController = loader.getController();
+        //sending selected items from the tableview to place in the modProd controller screen
+        modProdController.receivePart(partMainTableview.getSelectionModel().getSelectedItem());
 
 
+        //casting to the button on main
+        stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = loader.getRoot();
+        //telling program where we want it to go once button is clicked
+        //scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
+        //program makes new scene
+        stage.setScene(new Scene(scene));
+        //new scene starts
+        stage.show();
 
 
-   }
+    }
+
     public void onActionProdDel(ActionEvent actionEvent) {
     }
 
     public void onActionProdAdd(ActionEvent actionEvent) throws IOException {
 
-       FXMLLoader loaderAdd = new FXMLLoader();
-       loaderAdd.setLocation(getClass().getResource("/view/Add_Product.fxml"));
-       loaderAdd.load();
-       Add_Product addProdController = loaderAdd.getController();
-       addProdController.receiveTableTwo();
-       addProdController.receiveSlctTable();
+        FXMLLoader loaderAdd = new FXMLLoader();
+        loaderAdd.setLocation(getClass().getResource("/view/Add_Product.fxml"));
+        loaderAdd.load();
+        Add_Product addProdController = loaderAdd.getController();
+        addProdController.receiveTableTwo();
+        addProdController.receiveSlctTable();
 
 
-       //casting to the button on main
-      stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-      //telling program where we want it to go once button is clicked
+        //casting to the button on main
+        stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        //telling program where we want it to go once button is clicked
         Parent scene = loaderAdd.getRoot();
-      //program makes new scene
-      stage.setScene(new Scene(scene));
-      //new scene starts
-      stage.show();
+        //program makes new scene
+        stage.setScene(new Scene(scene));
+        //new scene starts
+        stage.show();
 
 
     }
@@ -242,21 +241,56 @@ public class Main_Screen implements Initializable {
         modProdController.receiveModSlctTable();
 
 
-
-     //casting to the button on main
-     stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-     Parent scene = loader.getRoot();
-     //telling program where we want it to go once button is clicked
-     //scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
-     //program makes new scene
-     stage.setScene(new Scene(scene));
-     //new scene starts
-     stage.show();
-
-
+        //casting to the button on main
+        stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent scene = loader.getRoot();
+        //telling program where we want it to go once button is clicked
+        //scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
+        //program makes new scene
+        stage.setScene(new Scene(scene));
+        //new scene starts
+        stage.show();
 
 
     }
 
+    @FXML
+    void onActionProdSrch(ActionEvent event) {
+        String input = prodMainTxt.getText();
 
+        int index = -1;
+
+        for (Product x : Inventory.getAllProducts()) {
+            index++;
+
+            //using '.equals()' to compare strings
+            if (x.getName().equals(input) || Integer.toString(x.getId()).equals(input)) {
+                prodMainTableview.getSelectionModel().select(x);
+
+
+                return;
+            }
+        }
+    }
+
+
+    @FXML
+    void onActionPartSrch(ActionEvent event) {
+        String input = partMainTxt.getText();
+
+        int index = -1;
+
+        for (Part x : Inventory.getAllParts()) {
+            index++;
+
+            //using '.equals()' to compare strings
+            if (x.getName().equals(input) || Integer.toString(x.getId()).equals(input)) {
+                partMainTableview.getSelectionModel().select(x);
+
+
+                return;
+
+            }
+        }
+    }
 }

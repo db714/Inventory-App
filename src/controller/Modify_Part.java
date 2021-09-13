@@ -129,7 +129,7 @@ public class Modify_Part {
         int machineId = Integer.parseInt(modPartMacIDTxt.getText());
 
         //To make it easier, make variable names above match the object variable names
-        Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));
+        Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
 
         //----This block of code takes you back to main after you input new object----
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

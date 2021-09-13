@@ -151,7 +151,7 @@ public class Modify_Product {
         int max = Integer.parseInt(modProMaxTxt.getText());
 
         //To make it easier, make variable names above match the object variable names
-        Inventory.update(id, new Product(id,name,stock,price,min,max));
+        Inventory.updateProduct(id, new Product(id,name,stock,price,min,max));
 
 
 

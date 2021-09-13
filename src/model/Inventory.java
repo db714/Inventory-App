@@ -31,18 +31,42 @@ public class Inventory {
         return allParts;
     }
 
-    public static void update(int id, Product product) {
-        System.out.println("Id is equal to " + id);
-        System.out.println("Product is at index...");
+    public static void updateProduct(int id, Product product) {
+
         int index = -1;
 
         for (Product x : getAllProducts()) {
             index++;
-            System.out.println("index "+ index +" is scanning");
+
 
             if (x.getId() == id) {
 
                 allProducts.set(index, product);
+
+
+                return;
+            }
+        }
+
+
+
+
+
+    }
+
+
+
+    public static void updatePart(int id, Part part) {
+
+        int index = -1;
+
+        for (Part x : getAllParts()) {
+            index++;
+
+
+            if (x.getId() == id) {
+
+                allParts.set(index, part);
 
 
                 return;
