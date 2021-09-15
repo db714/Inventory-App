@@ -4,17 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
-import model.InHouse;
-import model.Inventory;
-import model.Part;
-import model.Product;
+import model.*;
 
 import java.io.IOException;
 import java.util.EventObject;
@@ -59,6 +53,8 @@ public class Add_Part {
 
     @FXML
     private TextField addPartMacIDTxt;
+    @FXML
+    private Label sourceLabel;
 
     @FXML
     public void onActionPartCancel(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -81,7 +77,9 @@ public class Add_Part {
     @FXML
     public void onActionPartIH(ActionEvent event) {
 
+        addPartIHRB.setOnAction(value-> {sourceLabel.setText("Machine ID");});
     }
+
 
     @FXML
     public void onActionPartInv(ActionEvent event) {
@@ -111,6 +109,8 @@ public class Add_Part {
     @FXML
     public void onActionPartOS(ActionEvent event) {
 
+
+        addPartOSRB.setOnAction(value-> {sourceLabel.setText("Company Name");});
     }
 
     @FXML
@@ -129,9 +129,21 @@ public class Add_Part {
         int min = Integer.parseInt(addPartMinTxt.getText());
         int max = Integer.parseInt(addPartMaxTxt.getText());
         int machineId = Integer.parseInt(addPartMacIDTxt.getText());
+        String companyName = addPartMacIDTxt.getText();
+        boolean fromSource;
+       // *****labeled as sourceTog up above****
 
         //To make it easier, make variable names above match the object variable names
-        Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));
+
+        if(addPartIHRB.isSelected() == true){
+            System.out.println("in house worked");
+        Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));}
+
+        if(addPartOSRB.isSelected() == true){
+            System.out.println("this worked");
+            System.out.println(companyName);
+            Inventory.addPart(new Outsourced(id, name, stock, price, min, max, companyName));}
+
 
         //----This block of code takes you back to main after you input new object----
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
