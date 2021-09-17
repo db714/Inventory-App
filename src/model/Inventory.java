@@ -72,10 +72,17 @@ public class Inventory {
                 return;
             }
         }
+    }
 
+    public static void deleteProduct(Product product){
 
+        allProducts.remove(product);
 
+    }
 
+    public static void deletePart(Part part){
+
+        allParts.remove(part);
 
     }
 }

@@ -160,18 +160,11 @@ public class Main_Screen implements Initializable {
     }
 
     public void onActionPartDel(ActionEvent actionEvent) {
+
+       Inventory.deletePart((partMainTableview.getSelectionModel().getSelectedItem()));
     }
 
-    /* public void onActionPartMod(ActionEvent actionEvent) throws IOException {
-      //casting to the button on main
-      stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-      //telling program where we want it to go once button is clicked
-      scene = FXMLLoader.load(getClass().getResource("/view/Modify_Part.fxml"));
-      //program makes new scene
-      stage.setScene(new Scene(scene));
-      //new scene starts
-      stage.show();
-     }*/
+
     public void onActionPartMod(ActionEvent actionEvent) throws IOException {
 
         //to use loader() methods you must first instantiate
@@ -200,6 +193,7 @@ public class Main_Screen implements Initializable {
     }
 
     public void onActionProdDel(ActionEvent actionEvent) {
+        Inventory.deleteProduct((prodMainTableview.getSelectionModel().getSelectedItem()));
     }
 
     public void onActionProdAdd(ActionEvent actionEvent) throws IOException {

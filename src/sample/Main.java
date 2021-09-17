@@ -33,10 +33,16 @@ public class Main extends Application {
 
         //Test part object
         Part part1 = new InHouse(1,"Toy", 3, 17.99, 1,2, 2);
-        Part part2 = new InHouse(5,"Basketball", 6, 20.99, 1,2, 2);
+        Part part2 = new Outsourced(5,"Basketball", 6, 20.99, 1,2, "Target" );
 
         //adding test part1 above to observable list
         Inventory.addPart(part1);
+        ((InHouse)part1).setMachineId(((InHouse) part1).getMachineId());
+        System.out.println(part1.getClass());
+
+        System.out.println(((InHouse)part1).getMachineId());
+        Inventory.addPart(part2);
+
 
         //Test assPart object
         Part assPart1 = part1;

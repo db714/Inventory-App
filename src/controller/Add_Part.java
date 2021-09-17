@@ -128,20 +128,19 @@ public class Add_Part {
         double price = Double.parseDouble(addPartPriceTxt.getText());
         int min = Integer.parseInt(addPartMinTxt.getText());
         int max = Integer.parseInt(addPartMaxTxt.getText());
-        int machineId = Integer.parseInt(addPartMacIDTxt.getText());
-        String companyName = addPartMacIDTxt.getText();
-        boolean fromSource;
-       // *****labeled as sourceTog up above****
+
 
         //To make it easier, make variable names above match the object variable names
 
         if(addPartIHRB.isSelected() == true){
             System.out.println("in house worked");
-        Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));}
+            int machineId = Integer.parseInt(addPartMacIDTxt.getText());
+        Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));
+            }
 
         if(addPartOSRB.isSelected() == true){
             System.out.println("this worked");
-            System.out.println(companyName);
+            String companyName = addPartMacIDTxt.getText();
             Inventory.addPart(new Outsourced(id, name, stock, price, min, max, companyName));}
 
 

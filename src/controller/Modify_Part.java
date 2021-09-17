@@ -10,10 +10,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
-import model.InHouse;
-import model.Inventory;
-import model.Part;
-import model.Product;
+import model.*;
 
 import java.io.IOException;
 
@@ -150,7 +147,12 @@ public class Modify_Part {
         modPartPriceTxt.setText(String.valueOf(part.getPrice()));
         modPartMaxTxt.setText(String.valueOf(part.getMax()));
         modPartMinTxt.setText(String.valueOf(part.getMin()));
-      //TODO  modPartMacIDTxt.setText(String.valueOf(InHouse.getMachineId()));
+
+        if(part instanceof InHouse){
+            modPartMacIDTxt.setText(String.valueOf(((InHouse)part).getMachineId()));}
+
+        if(part instanceof Outsourced){
+        modPartMacIDTxt.setText(String.valueOf(((Outsourced)part).getCompanyName()));}
     }
 
 }
