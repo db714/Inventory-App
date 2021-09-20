@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
 
@@ -116,27 +113,36 @@ public class Modify_Part {
 
     @FXML
     public void onActionmodPartSave(javafx.event.ActionEvent actionEvent) throws IOException {
-        //Parses the text fields and converts them to the appropriate primitive
-        int id = Integer.parseInt(modPartIDTxt.getText());
-        String name = modPartNameTxt.getText();
-        int stock = Integer.parseInt(modPartInvTxt.getText());
-        double price = Double.parseDouble(modPartPriceTxt.getText());
-        int min = Integer.parseInt(modPartMinTxt.getText());
-        int max = Integer.parseInt(modPartMaxTxt.getText());
-        int machineId = Integer.parseInt(modPartMacIDTxt.getText());
 
-        //To make it easier, make variable names above match the object variable names
-        Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
+        try {
+            //Parses the text fields and converts them to the appropriate primitive
+            int id = Integer.parseInt(modPartIDTxt.getText());
+            String name = modPartNameTxt.getText();
+            int stock = Integer.parseInt(modPartInvTxt.getText());
+            double price = Double.parseDouble(modPartPriceTxt.getText());
+            int min = Integer.parseInt(modPartMinTxt.getText());
+            int max = Integer.parseInt(modPartMaxTxt.getText());
+            int machineId = Integer.parseInt(modPartMacIDTxt.getText());
 
-        //----This block of code takes you back to main after you input new object----
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        //telling program where we want it to go once button is clicked
-        scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
-        //program makes new scene
-        stage.setScene(new Scene((Parent) scene));
-        //new scene starts
-        stage.show();
+            //To make it easier, make variable names above match the object variable names
+            Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
 
+            //----This block of code takes you back to main after you input new object----
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            //telling program where we want it to go once button is clicked
+            scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
+            //program makes new scene
+            stage.setScene(new Scene((Parent) scene));
+            //new scene starts
+            stage.show();
+        }
+
+        catch(NumberFormatException numEx) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Please enter valid values in text fields");
+            error.showAndWait();
+        }
     }
 
     public void receivePart(Part part){

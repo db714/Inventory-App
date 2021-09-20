@@ -5,17 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Part;
 import model.Product;
+import javafx.fxml.Initializable;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class Add_Product {
 
@@ -85,10 +85,18 @@ public class Add_Product {
     @FXML
     private TableColumn<Part, Double> addProdAssPartPriceCol;
 
+
+
+    public void initialize(){
+        this.product = product;
+        product.getAssParts();
+    }
+
     @FXML
     void onActionAddProdAdd(ActionEvent event) {
+        //TODO changed the class to an instance operation
 
-        Product.addAssPart(addProdPartTable.getSelectionModel().getSelectedItem());
+        product.addAssPart(addProdPartTable.getSelectionModel().getSelectedItem());
 
     }
 
@@ -144,26 +152,36 @@ public class Add_Product {
 
     @FXML
     void onActionAddProdSave(javafx.event.ActionEvent actionEvent) throws IOException {
-        //Parses the text fields and converts them to the appropriate primitive
-        //int id = Integer.parseInt(addProdIDTxt.getText());
-        int id = 0;
-        String name = addProdNameTxt.getText();
-        int stock = Integer.parseInt(addProdInvTxt.getText());
-        double price = Double.parseDouble(addProdPriceTxt.getText());
-        int min = Integer.parseInt(addProdMinTxt.getText());
-        int max = Integer.parseInt(addProdMaxTxt.getText());
 
-        //To make it easier, make variable names above match the object variable names
-        Inventory.addProduct(new Product(id, name, stock, price, min, max));
+        try {
+            //Parses the text fields and converts them to the appropriate primitive
+            //int id = Integer.parseInt(addProdIDTxt.getText());
+            int id = 0;
+            String name = addProdNameTxt.getText();
+            int stock = Integer.parseInt(addProdInvTxt.getText());
+            double price = Double.parseDouble(addProdPriceTxt.getText());
+            int min = Integer.parseInt(addProdMinTxt.getText());
+            int max = Integer.parseInt(addProdMaxTxt.getText());
 
-        //----This block of code takes you back to main after you input new object----
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        //telling program where we want it to go once button is clicked
-        scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
-        //program makes new scene
-        stage.setScene(new Scene((Parent) scene));
-        //new scene starts
-        stage.show();
+            //To make it easier, make variable names above match the object variable names
+            Inventory.addProduct(new Product(id, name, stock, price, min, max));
+
+            //----This block of code takes you back to main after you input new object----
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            //telling program where we want it to go once button is clicked
+            scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
+            //program makes new scene
+            stage.setScene(new Scene((Parent) scene));
+            //new scene starts
+            stage.show();
+        }
+
+        catch(NumberFormatException numEx) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Please enter valid values in text fields");
+            error.showAndWait();
+        }
 
 
     }
@@ -184,8 +202,9 @@ public class Add_Product {
     }
 
     public void receiveSlctTable(){
-
-        addProdSlctPartTable.setItems(Product.getAssParts());
+//TODO changed the class to an instance operation
+        Product product =  null;
+        addProdSlctPartTable.setItems(product.getAssParts());
 
         addProdAssPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdAssPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));

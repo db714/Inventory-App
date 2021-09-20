@@ -8,7 +8,8 @@ import javafx.collections.ObservableList;
  * @author Place Your Name Here
  */
 public class Product {
-    private static ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    //TODO changed ob list from static
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private static int next_id = 0;
     private int id;
     private String name;
@@ -113,13 +114,13 @@ public class Product {
     }
 
 
-    public static void addAssPart(Part part){
-
+    public void addAssPart(Part part){
+    //TODO removed static from this function
         associatedParts.add(part);
     }
 
-
-    public static ObservableList<Part> getAssParts(){
+    //TODO removed static from this function
+    public ObservableList<Part> getAssParts(){
 
         return associatedParts;
     }
@@ -129,8 +130,8 @@ public class Product {
 
    }
 
-   //TODO public deleteAssociatedPart(){
-    // boolean ;}
+   /*public deleteAssociatedPart(){
+     boolean ;}*/
 
 
 

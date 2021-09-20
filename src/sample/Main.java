@@ -49,7 +49,7 @@ public class Main extends Application {
 
 
         //adding test assPart1 above to observable list
-        Product.addAssPart(part1);
+        //Product.addAssPart(part1);
 
         //adding an allPart to assPart
 

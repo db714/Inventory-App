@@ -6,8 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Inventory;
@@ -16,10 +15,9 @@ import model.InHouse;
 import model.Outsourced;
 import model.Part;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 // TODO remove (((xmlns="http://javafx.com/javafx/16" from Main_Screen.fxml)))
@@ -161,7 +159,16 @@ public class Main_Screen implements Initializable {
 
     public void onActionPartDel(ActionEvent actionEvent) {
 
-       Inventory.deletePart((partMainTableview.getSelectionModel().getSelectedItem()));
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirm Dialog");
+        confirmation.setContentText("Do you want to delete this part?");
+
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+
+            Inventory.deletePart((partMainTableview.getSelectionModel().getSelectedItem()));
+        }
     }
 
 
@@ -193,7 +200,16 @@ public class Main_Screen implements Initializable {
     }
 
     public void onActionProdDel(ActionEvent actionEvent) {
-        Inventory.deleteProduct((prodMainTableview.getSelectionModel().getSelectedItem()));
+
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirm Dialog");
+        confirmation.setContentText("Do you want to delete this product?");
+
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            Inventory.deleteProduct((prodMainTableview.getSelectionModel().getSelectedItem()));
+        }
     }
 
     public void onActionProdAdd(ActionEvent actionEvent) throws IOException {
@@ -232,6 +248,7 @@ public class Main_Screen implements Initializable {
         modProdController.receiveProduct(prodMainTableview.getSelectionModel().getSelectedItem());
         //****TESTING****
         modProdController.receiveTable();
+        //TODO I edited this by putting in parameters
         modProdController.receiveModSlctTable();
 
 

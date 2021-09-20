@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Inventory;
@@ -87,6 +84,9 @@ public class Modify_Product {
 
     @FXML
     void onActionModProAdd(ActionEvent event) {
+//TODO changed the class to an instance operation
+        Product product = null;
+        product.addAssPart(modProSlctTable.getSelectionModel().getSelectedItem());
 
 
 
@@ -142,29 +142,38 @@ public class Modify_Product {
 
     @FXML
     void onActionModProSave(javafx.event.ActionEvent actionEvent) throws IOException {
-        //Parses the text fields and converts them to the appropriate primitive
-        int id = Integer.parseInt(modProIDTxt.getText());
-        String name = modProNameTxt.getText();
-        int stock = Integer.parseInt(modProInvTxt.getText());
-        double price = Double.parseDouble(modProPriceTxt.getText());
-        int min = Integer.parseInt(modProMinTxt.getText());
-        int max = Integer.parseInt(modProMaxTxt.getText());
 
-        //To make it easier, make variable names above match the object variable names
-        Inventory.updateProduct(id, new Product(id,name,stock,price,min,max));
+        try {
+            //Parses the text fields and converts them to the appropriate primitive
+            int id = Integer.parseInt(modProIDTxt.getText());
+            String name = modProNameTxt.getText();
+            int stock = Integer.parseInt(modProInvTxt.getText());
+            double price = Double.parseDouble(modProPriceTxt.getText());
+            int min = Integer.parseInt(modProMinTxt.getText());
+            int max = Integer.parseInt(modProMaxTxt.getText());
+
+            //To make it easier, make variable names above match the object variable names
+            Inventory.updateProduct(id, new Product(id, name, stock, price, min, max));
 
 
+            //Inventory.addProduct(new Product(id, name, stock, price, min, max));
 
-        //Inventory.addProduct(new Product(id, name, stock, price, min, max));
+            //----This block of code takes you back to main after you input new object----
+            Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            //telling program where we want it to go once button is clicked
+            scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
+            //program makes new scene
+            stage.setScene(new Scene((Parent) scene));
+            //new scene starts
+            stage.show();
+        }
 
-        //----This block of code takes you back to main after you input new object----
-        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        //telling program where we want it to go once button is clicked
-        scene = FXMLLoader.load(getClass().getResource("/view/Main_Screen.fxml"));
-        //program makes new scene
-        stage.setScene(new Scene((Parent) scene));
-        //new scene starts
-        stage.show();
+        catch(NumberFormatException numEx) {
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Please enter valid values in text fields");
+            error.showAndWait();
+        }
 
 
 
@@ -195,6 +204,7 @@ public class Modify_Product {
     }
 
     public void receiveModSlctTable(){
+        //TODO changed the class to an instance operation
 
         modProdAssPTable.setItems(Product.getAssParts());
 

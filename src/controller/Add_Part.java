@@ -121,6 +121,8 @@ public class Add_Part {
     @FXML
     public void onActionPartSave(javafx.event.ActionEvent actionEvent) throws IOException {
 
+
+        try{
         //Parses the text fields and converts them to the appropriate primitive
         int id = Integer.parseInt(addPartIDTxt.getText());
         String name = addPartNameTxt.getText();
@@ -151,7 +153,16 @@ public class Add_Part {
         //program makes new scene
         stage.setScene(new Scene((Parent) scene));
         //new scene starts
-        stage.show();
+        stage.show();}
+
+        catch(NumberFormatException numEx){
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Please enter valid values in text fields");
+            error.showAndWait();
+        }
+
+
 
     }
 
