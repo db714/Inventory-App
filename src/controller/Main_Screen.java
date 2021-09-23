@@ -27,6 +27,8 @@ public class Main_Screen implements Initializable {
     Parent scene;
 
 
+
+
     @FXML
     private TableView<Part> partMainTableview;
 
@@ -139,6 +141,8 @@ public class Main_Screen implements Initializable {
         partPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
 
+
+
     }
 
     public void onActionPartAdd(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -184,6 +188,8 @@ public class Main_Screen implements Initializable {
         Modify_Part modProdController = loader.getController();
         //sending selected items from the tableview to place in the modProd controller screen
         modProdController.receivePart(partMainTableview.getSelectionModel().getSelectedItem());
+
+
 
 
         //casting to the button on main
@@ -245,11 +251,15 @@ public class Main_Screen implements Initializable {
         //creating an instance for the second controller so methods can be used from that class
         Modify_Product modProdController = loader.getController();
         //sending selected items from the tableview to place in the modProd controller screen
-        modProdController.receiveProduct(prodMainTableview.getSelectionModel().getSelectedItem());
+        //TODO this line is new
+        Product p = prodMainTableview.getSelectionModel().getSelectedItem();
+        //modProdController.receiveProduct(prodMainTableview.getSelectionModel().getSelectedItem());
+        modProdController.receiveProduct(p);
         //****TESTING****
         modProdController.receiveTable();
-        //TODO I edited this by putting in parameters
-        modProdController.receiveModSlctTable();
+
+        modProdController.receiveModSlctTable(p);
+
 
 
         //casting to the button on main

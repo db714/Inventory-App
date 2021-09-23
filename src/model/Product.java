@@ -19,7 +19,8 @@ public class Product {
     private int max;
 
     public Product(int id, String name, int stock, double price, int min, int max) {
-        this.id = ++next_id;
+        this.id = id;
+        //this.id = ++next_id;
          // replace to id if doesn't work
         this.name = name;
         this.stock = stock;
@@ -116,7 +117,7 @@ public class Product {
 
     public void addAssPart(Part part){
     //TODO removed static from this function
-        associatedParts.add(part);
+        this.associatedParts.add(part);
     }
 
     //TODO removed static from this function

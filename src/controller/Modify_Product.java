@@ -1,8 +1,11 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,11 +16,15 @@ import model.Part;
 import model.Product;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Modify_Product {
+public class Modify_Product implements Initializable {
 
     Stage stage;
     Parent scene;
+
+    private ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
 
     @FXML
     private TextField modProIDTxt;
@@ -85,8 +92,8 @@ public class Modify_Product {
     @FXML
     void onActionModProAdd(ActionEvent event) {
 //TODO changed the class to an instance operation
-        Product product = null;
-        product.addAssPart(modProSlctTable.getSelectionModel().getSelectedItem());
+        Part selectedPart = modProSlctTable.getSelectionModel().getSelectedItem();
+        associatedPartsList.add(selectedPart);
 
 
 
@@ -144,6 +151,8 @@ public class Modify_Product {
     void onActionModProSave(javafx.event.ActionEvent actionEvent) throws IOException {
 
         try {
+
+
             //Parses the text fields and converts them to the appropriate primitive
             int id = Integer.parseInt(modProIDTxt.getText());
             String name = modProNameTxt.getText();
@@ -153,9 +162,42 @@ public class Modify_Product {
             int max = Integer.parseInt(modProMaxTxt.getText());
 
             //To make it easier, make variable names above match the object variable names
-            Inventory.updateProduct(id, new Product(id, name, stock, price, min, max));
+            //Inventory.updateProduct(id, new Product(id, name, stock, price, min, max));
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+
+            //TODO something needs to go here that actually saves the associated parts table to the associated parts list
+            if (Integer.parseInt(modProMaxTxt.getText()) < Integer.parseInt(modProMinTxt.getText())) {
+                alert.setContentText("Max value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(modProInvTxt.getText()) > Integer.parseInt(modProMaxTxt.getText())) {
+                alert.setContentText("Inventory value cannot be greater than Max value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(modProIDTxt.getText()) < Integer.parseInt(modProMinTxt.getText())) {
+                alert.setContentText("Inventory value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
+            }
+            else {
+                Product p = new Product(id, name, stock, price, min, max);
+                Inventory.updateProduct(id, p);
+
+                System.out.println(associatedPartsList.size());
 
 
+                for (int i = 0; i < associatedPartsList.size(); i++) {
+                    p.addAssPart(associatedPartsList.get(i));
+                    System.out.println(p.getAssParts());
+
+                }
+
+            }
             //Inventory.addProduct(new Product(id, name, stock, price, min, max));
 
             //----This block of code takes you back to main after you input new object----
@@ -203,10 +245,10 @@ public class Modify_Product {
         modProSlctPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    public void receiveModSlctTable(){
+    public void receiveModSlctTable(Product product){
         //TODO changed the class to an instance operation
-
-        modProdAssPTable.setItems(Product.getAssParts());
+        Product p = product;
+        modProdAssPTable.setItems(p.getAssParts());
 
         modProdAssPIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         modProdAssPNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -214,32 +256,16 @@ public class Modify_Product {
         modProdAssPPrideCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    /*public void update(int id ,Product product){
-        System.out.println("Id is equal to "+ id);
-        int index = -1;
-
-        for( Product x : Inventory.getAllProducts()){
-                index++;
-
-                if(x.getId() == id){
-                    product = x;
-                    Inventory.getAllProducts().set(index, product);
-                            return;
-                }
-        }
 
 
-        *//*for(int i = -1; i < Inventory.getAllProducts().size(); i++){
-            //Inventory.getAllProducts();
-            System.out.println("this array was checked");
-            if(product.getId() == id){
-                Inventory.getAllProducts().set(i, product);
-                System.out.println("this is true");
-                return true;
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //TODO parameter for this in not right
+        //associatedPartsList = getAssParts();
+        //modProdAssPTable.setItems(getAssParts());
+    }
 
-        }*//*
 
-    }*/
 }
 
 

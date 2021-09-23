@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +19,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Add_Product {
-
+public class Add_Product implements Initializable {
+    Product product;
     Stage stage;
     Parent scene;
+    //TODO added this list to add product
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
     @FXML
     private TextField addProdIDTxt;
@@ -86,10 +90,13 @@ public class Add_Product {
     private TableColumn<Part, Double> addProdAssPartPriceCol;
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle rb){
 
-    public void initialize(){
-        this.product = product;
-        product.getAssParts();
+        //product.getAssParts();
+        System.out.println("made it to the initializer");
+
+        //addProdSlctPartTable.setItems(product.getAssParts());
     }
 
     @FXML
@@ -155,8 +162,8 @@ public class Add_Product {
 
         try {
             //Parses the text fields and converts them to the appropriate primitive
-            //int id = Integer.parseInt(addProdIDTxt.getText());
-            int id = 0;
+            int id = Integer.parseInt(addProdIDTxt.getText());
+            //int id = 0;
             String name = addProdNameTxt.getText();
             int stock = Integer.parseInt(addProdInvTxt.getText());
             double price = Double.parseDouble(addProdPriceTxt.getText());
@@ -203,8 +210,8 @@ public class Add_Product {
 
     public void receiveSlctTable(){
 //TODO changed the class to an instance operation
-        Product product =  null;
-        addProdSlctPartTable.setItems(product.getAssParts());
+
+        //addProdSlctPartTable.setItems(Product.getAssParts());
 
         addProdAssPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdAssPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
