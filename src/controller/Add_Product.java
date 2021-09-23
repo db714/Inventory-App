@@ -24,7 +24,8 @@ public class Add_Product implements Initializable {
     Stage stage;
     Parent scene;
     //TODO added this list to add product
-    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    //private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
 
     @FXML
     private TextField addProdIDTxt;
@@ -102,8 +103,9 @@ public class Add_Product implements Initializable {
     @FXML
     void onActionAddProdAdd(ActionEvent event) {
         //TODO changed the class to an instance operation
-
-        product.addAssPart(addProdPartTable.getSelectionModel().getSelectedItem());
+        Part selectedPart = addProdPartTable.getSelectionModel().getSelectedItem();
+        associatedPartsList.add(selectedPart);
+        //product.addAssPart(addProdPartTable.getSelectionModel().getSelectedItem());
 
     }
 
@@ -170,8 +172,41 @@ public class Add_Product implements Initializable {
             int min = Integer.parseInt(addProdMinTxt.getText());
             int max = Integer.parseInt(addProdMaxTxt.getText());
 
-            //To make it easier, make variable names above match the object variable names
-            Inventory.addProduct(new Product(id, name, stock, price, min, max));
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+
+            //TODO something needs to go here that actually saves the associated parts table to the associated parts list
+            if (Integer.parseInt(addProdMaxTxt.getText()) < Integer.parseInt(addProdMinTxt.getText())) {
+                alert.setContentText("Max value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(addProdInvTxt.getText()) > Integer.parseInt(addProdMaxTxt.getText())) {
+                alert.setContentText("Inventory value cannot be greater than Max value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(addProdIDTxt.getText()) < Integer.parseInt(addProdMinTxt.getText())) {
+                alert.setContentText("Inventory value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
+            }
+
+                else {
+                //To make it easier, make variable names above match the object variable names
+                Product p = new Product(id, name, stock, price, min, max);
+                Inventory.addProduct(p);
+
+                for (int i = 0; i < associatedPartsList.size(); i++) {
+                    p.addAssPart(associatedPartsList.get(i));
+                    System.out.println(p.getAssParts());
+                }
+            }
+
+
+
 
             //----This block of code takes you back to main after you input new object----
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -212,6 +247,7 @@ public class Add_Product implements Initializable {
 //TODO changed the class to an instance operation
 
         //addProdSlctPartTable.setItems(Product.getAssParts());
+        addProdSlctPartTable.setItems(associatedPartsList);
 
         addProdAssPartIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         addProdAssPartNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
