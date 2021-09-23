@@ -254,6 +254,9 @@ public class Modify_Product implements Initializable {
         modProdAssPNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         modProdAssPInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         modProdAssPPrideCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        associatedPartsList = p.getAssParts();
+
     }
 
 
