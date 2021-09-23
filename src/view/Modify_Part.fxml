@@ -14,7 +14,7 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <TextField fx:id="modPartIDTxt" layoutX="122.0" layoutY="103.0" onAction="#onActionmodPartID" />
+            <TextField fx:id="modPartIDTxt" layoutX="122.0" layoutY="103.0" onAction="#onActionmodPartID" disable="true" editable="false" promptText="Auto Gen - Disabled" />
             <TextField fx:id="modPartNameTxt" layoutX="122.0" layoutY="148.0" onAction="#onActionmodPartName" />
             <TextField fx:id="modPartInvTxt" layoutX="122.0" layoutY="188.0" onAction="#onActionmodPartInv" />
             <TextField fx:id="modPartPriceTxt" layoutX="122.0" layoutY="232.0" onAction="#onActionmodPartPrice" />

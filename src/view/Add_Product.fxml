@@ -15,7 +15,7 @@
       <Pane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="936.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="554.0" layoutX="19.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 15px; -fx-arc-width: 15px;" width="895.0" />
-            <TextField fx:id="addProdIDTxt" layoutX="119.0" layoutY="116.0" onAction="#onActionAddProdID" />
+            <TextField fx:id="addProdIDTxt" layoutX="119.0" layoutY="116.0" onAction="#onActionAddProdID" disable="true" editable="false" promptText="Auto Gen - Disabled" />
             <TextField fx:id="addProdNameTxt" layoutX="119.0" layoutY="159.0" onAction="#onActionAddProdName" />
             <TextField fx:id="addProdInvTxt" layoutX="119.0" layoutY="203.0" onAction="#onActionAddProdInv" />
             <TextField fx:id="addProdPriceTxt" layoutX="119.0" layoutY="248.0" onAction="#onActionAddProdPrice" />

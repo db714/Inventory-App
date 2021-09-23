@@ -23,6 +23,7 @@ public class Add_Product implements Initializable {
     Product product;
     Stage stage;
     Parent scene;
+    private static int next_ID = 1;
     //TODO added this list to add product
     //private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
@@ -162,10 +163,12 @@ public class Add_Product implements Initializable {
     @FXML
     void onActionAddProdSave(javafx.event.ActionEvent actionEvent) throws IOException {
 
-        try {
+
             //Parses the text fields and converts them to the appropriate primitive
-            int id = Integer.parseInt(addProdIDTxt.getText());
-            //int id = 0;
+            //int id = Integer.parseInt(addProdIDTxt.getText();
+
+        try {
+            int id = next_ID++;
             String name = addProdNameTxt.getText();
             int stock = Integer.parseInt(addProdInvTxt.getText());
             double price = Double.parseDouble(addProdPriceTxt.getText());
@@ -188,7 +191,7 @@ public class Add_Product implements Initializable {
                 alert.showAndWait();
                 return;
             }
-            if (Integer.parseInt(addProdIDTxt.getText()) < Integer.parseInt(addProdMinTxt.getText())) {
+            if (Integer.parseInt(addProdInvTxt.getText()) < Integer.parseInt(addProdMinTxt.getText())) {
                 alert.setContentText("Inventory value cannot be less than Min value!");
                 alert.showAndWait();
                 return;

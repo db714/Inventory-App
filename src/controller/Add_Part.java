@@ -124,6 +124,7 @@ public class Add_Part {
 
         try{
         //Parses the text fields and converts them to the appropriate primitive
+            //TODO take away parsing and add static int
         int id = Integer.parseInt(addPartIDTxt.getText());
         String name = addPartNameTxt.getText();
         int stock = Integer.parseInt(addPartInvTxt.getText());

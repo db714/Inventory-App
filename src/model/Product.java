@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 public class Product {
     //TODO changed ob list from static
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
-    private static int next_id = 0;
+    //private static int next_id = 0;
     private int id;
     private String name;
     private double price;

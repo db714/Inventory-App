@@ -12,7 +12,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="936.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Modify_Product">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="554.0" layoutX="19.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 15px; -fx-arc-width: 15px;" width="895.0" />
-      <TextField fx:id="modProIDTxt" layoutX="119.0" layoutY="116.0" onAction="#onActionModProID" />
+      <TextField fx:id="modProIDTxt" layoutX="119.0" layoutY="116.0" onAction="#onActionModProID" disable="true" editable="false" promptText="Auto Gen - Disabled" />
       <TextField fx:id="modProNameTxt" layoutX="119.0" layoutY="159.0" onAction="#onActionModProName" />
       <TextField fx:id="modProInvTxt" layoutX="119.0" layoutY="203.0" onAction="#onActionModProInv" />
       <TextField fx:id="modProPriceTxt" layoutX="119.0" layoutY="248.0" onAction="#onActionModProPrice" />
