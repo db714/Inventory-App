@@ -113,6 +113,7 @@ public class Modify_Part {
 
     @FXML
     public void onActionmodPartSave(javafx.event.ActionEvent actionEvent) throws IOException {
+        boolean rb = modPartIHRB.isSelected();
 
         try {
             //Parses the text fields and converts them to the appropriate primitive
@@ -125,7 +126,21 @@ public class Modify_Part {
             int machineId = Integer.parseInt(modPartMacIDTxt.getText());
 
             //To make it easier, make variable names above match the object variable names
-            Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
+            if(rb == true){
+                System.out.println("in house worked");
+                machineId = Integer.parseInt(modPartMacIDTxt.getText());
+                Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
+                System.out.println("in house modified");
+                System.out.println(modPartIHRB.isSelected());
+            }
+
+            if(rb == false){
+                System.out.println("this worked");
+                String companyName = modPartMacIDTxt.getText();
+                Inventory.updatePart(id, new Outsourced(id, name, stock, price, min, max, companyName));
+            System.out.println("outsourced modified");
+            System.out.println(modPartOSRB.isSelected());
+            }
 
             //----This block of code takes you back to main after you input new object----
             Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -138,6 +153,7 @@ public class Modify_Part {
         }
 
         catch(NumberFormatException numEx) {
+
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Error Dialog");
             error.setContentText("Please enter valid values in text fields");
@@ -157,8 +173,10 @@ public class Modify_Part {
         if(part instanceof InHouse){
             modPartMacIDTxt.setText(String.valueOf(((InHouse)part).getMachineId()));}
 
+
         if(part instanceof Outsourced){
         modPartMacIDTxt.setText(String.valueOf(((Outsourced)part).getCompanyName()));}
+
     }
 
 }

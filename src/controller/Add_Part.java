@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,9 +12,11 @@ import javafx.event.ActionEvent;
 import model.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.EventObject;
+import java.util.ResourceBundle;
 
-public class Add_Part {
+public class Add_Part implements Initializable {
 
     Stage stage;
     Parent scene;
@@ -79,6 +82,7 @@ public class Add_Part {
     public void onActionPartIH(ActionEvent event) {
 
         addPartIHRB.setOnAction(value-> {sourceLabel.setText("Machine ID");});
+
     }
 
 
@@ -112,6 +116,7 @@ public class Add_Part {
 
 
         addPartOSRB.setOnAction(value-> {sourceLabel.setText("Company Name");});
+
     }
 
     @FXML
@@ -168,4 +173,20 @@ public class Add_Part {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
+        addPartIHRB.setSelected(true);
+        addPartIHRB.setOnAction(value-> {sourceLabel.setText("Machine ID");});
+        addPartIHRB.setSelected(false);
+        addPartOSRB.setSelected(true);
+        addPartOSRB.setOnAction(value-> {sourceLabel.setText("Company Name");});
+        addPartOSRB.setSelected(false);
+        addPartIHRB.setSelected(true);
+        addPartIHRB.setOnAction(value-> {sourceLabel.setText("Machine ID");});
+
+
+    }
 }

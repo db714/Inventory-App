@@ -33,7 +33,7 @@
       <Label layoutX="72.0" layoutY="192.0" text="Inv" />
       <Label layoutX="53.0" layoutY="236.0" text="Price/Cost" />
       <Label layoutX="66.0" layoutY="276.0" text="Max" />
-      <Label fx:id="sourceLabel" layoutX="23.0" layoutY="314.0" text="Machine ID" />
+      <Label fx:id="sourceLabel" layoutX="23.0" layoutY="314.0"  text="Machine ID"/>
       <TextField fx:id="addPartMacIDTxt" layoutX="122.0" layoutY="310.0" onAction="#onActionPartMacID" />
       <Label layoutX="300.0" layoutY="236.0" text="Min" />
    </children>

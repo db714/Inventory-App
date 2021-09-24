@@ -158,6 +158,20 @@ public class Add_Product implements Initializable {
     @FXML
     void onActionAddProdRmv(ActionEvent event) {
 
+        Part selectedPart = addProdSlctPartTable.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        if(selectedPart != null){
+            associatedPartsList.remove(selectedPart);}
+
+        if(selectedPart == null){
+
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Must select part to remove");
+            alert.showAndWait();
+        }
+
     }
 
     @FXML
@@ -233,6 +247,23 @@ public class Add_Product implements Initializable {
 
     @FXML
     void onActionAddProdSrch(ActionEvent event) {
+
+        ObservableList<Part> filteredParts = FXCollections.observableArrayList();
+        String input = addProdSrchTxt.getText();
+        for(Part x : Inventory.getAllParts()){
+            if(x.getName().contains(input) || Integer.toString(x.getId()).contains(input)) {
+                filteredParts.add(x);
+            }
+        }
+        addProdPartTable.setItems(filteredParts);
+
+        if (filteredParts.isEmpty()){
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Part not found");
+            error.showAndWait();}
+        return;
+
 
     }
 

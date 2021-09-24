@@ -144,6 +144,19 @@ public class Modify_Product implements Initializable {
 
     @FXML
     void onActionModProRmv(ActionEvent event) {
+        Part selectedPart = modProdAssPTable.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        if(selectedPart != null){
+            associatedPartsList.remove(selectedPart);}
+
+        if(selectedPart == null){
+
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Must select part to remove");
+            alert.showAndWait();
+        }
 
     }
 
@@ -223,6 +236,23 @@ public class Modify_Product implements Initializable {
 
     @FXML
     void onActionModProSearch(ActionEvent event) {
+
+        ObservableList<Part> filteredParts = FXCollections.observableArrayList();
+        String input = modProSearchTxt.getText();
+        for(Part x : Inventory.getAllParts()){
+            if(x.getName().contains(input) || Integer.toString(x.getId()).contains(input)) {
+                filteredParts.add(x);
+            }
+        }
+        modProSlctTable.setItems(filteredParts);
+
+        if (filteredParts.isEmpty()){
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Part not found");
+            error.showAndWait();}
+        return;
+
 
     }
 

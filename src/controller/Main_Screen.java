@@ -183,7 +183,7 @@ public class Main_Screen implements Initializable {
 
 
     public void onActionPartMod(ActionEvent actionEvent) throws IOException {
-
+    try {
         //to use loader() methods you must first instantiate
         FXMLLoader loader = new FXMLLoader();
         //identifying the destination location
@@ -196,8 +196,6 @@ public class Main_Screen implements Initializable {
         modProdController.receivePart(partMainTableview.getSelectionModel().getSelectedItem());
 
 
-
-
         //casting to the button on main
         stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         Parent scene = loader.getRoot();
@@ -207,20 +205,43 @@ public class Main_Screen implements Initializable {
         stage.setScene(new Scene(scene));
         //new scene starts
         stage.show();
+    }
+    catch(NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Must select part to modify");
+            alert.showAndWait();
+        }
 
 
     }
 
     public void onActionProdDel(ActionEvent actionEvent) {
+        Product selectedProduct = prodMainTableview.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if( selectedProduct != null) {
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmation.setTitle("Confirm Dialog");
+            confirmation.setContentText("Do you want to delete this product?");
 
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmation.setTitle("Confirm Dialog");
-        confirmation.setContentText("Do you want to delete this product?");
+            Optional<ButtonType> result = confirmation.showAndWait();
 
-        Optional<ButtonType> result = confirmation.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK && selectedProduct.getAssParts().isEmpty() == true) {
+                Inventory.deleteProduct((prodMainTableview.getSelectionModel().getSelectedItem()));
+            }
 
-        if(result.isPresent() && result.get() == ButtonType.OK) {
-            Inventory.deleteProduct((prodMainTableview.getSelectionModel().getSelectedItem()));
+            else{alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Must remove ALL associated parts before delete");
+                alert.showAndWait();}
+        }
+
+        else{
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Must select Product to delete");
+            alert.showAndWait();
         }
     }
 
@@ -247,36 +268,44 @@ public class Main_Screen implements Initializable {
     }
 
     public void onActionProdMod(ActionEvent actionEvent) throws IOException {
+        try {
+            //to use loader() methods you must first instantiate
+            FXMLLoader loader = new FXMLLoader();
+            //identifying the destination location
+            loader.setLocation(getClass().getResource("/view/Modify_Product.fxml"));
+            //loading(with the loader instance)
+            loader.load();
+            //creating an instance for the second controller so methods can be used from that class
+            Modify_Product modProdController = loader.getController();
+            //sending selected items from the tableview to place in the modProd controller screen
+            //TODO this line is new
+            Product p = prodMainTableview.getSelectionModel().getSelectedItem();
+            //modProdController.receiveProduct(prodMainTableview.getSelectionModel().getSelectedItem());
+            modProdController.receiveProduct(p);
+            //****TESTING****
+            modProdController.receiveTable();
 
-        //to use loader() methods you must first instantiate
-        FXMLLoader loader = new FXMLLoader();
-        //identifying the destination location
-        loader.setLocation(getClass().getResource("/view/Modify_Product.fxml"));
-        //loading(with the loader instance)
-        loader.load();
-        //creating an instance for the second controller so methods can be used from that class
-        Modify_Product modProdController = loader.getController();
-        //sending selected items from the tableview to place in the modProd controller screen
-        //TODO this line is new
-        Product p = prodMainTableview.getSelectionModel().getSelectedItem();
-        //modProdController.receiveProduct(prodMainTableview.getSelectionModel().getSelectedItem());
-        modProdController.receiveProduct(p);
-        //****TESTING****
-        modProdController.receiveTable();
-
-        modProdController.receiveModSlctTable(p);
+            modProdController.receiveModSlctTable(p);
 
 
+            //casting to the button on main
+            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            //telling program where we want it to go once button is clicked
+            //scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
+            //program makes new scene
+            stage.setScene(new Scene(scene));
+            //new scene starts
+            stage.show();
+        }
 
-        //casting to the button on main
-        stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        Parent scene = loader.getRoot();
-        //telling program where we want it to go once button is clicked
-        //scene = FXMLLoader.load(getClass().getResource("/view/Modify_Product.fxml"));
-        //program makes new scene
-        stage.setScene(new Scene(scene));
-        //new scene starts
-        stage.show();
+        catch(NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Must select product to modify");
+            alert.showAndWait();
+        }
 
 
     }
@@ -303,6 +332,13 @@ public class Main_Screen implements Initializable {
           }
       }
       prodMainTableview.setItems(filteredProducts);
+
+        if (filteredProducts.isEmpty()){
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Part not found");
+            error.showAndWait();}
+
       return;
 
 
@@ -329,7 +365,26 @@ public class Main_Screen implements Initializable {
 
     @FXML
     void onActionPartSrch(ActionEvent event) {
+
+        //made new obList to insert filtered items into and then  displayed new list on tableview
+        ObservableList<Part> filteredParts = FXCollections.observableArrayList();
         String input = partMainTxt.getText();
+        for(Part x : Inventory.getAllParts()){
+            if(x.getName().contains(input) || Integer.toString(x.getId()).contains(input)) {
+                filteredParts.add(x);
+            }
+        }
+        partMainTableview.setItems(filteredParts);
+
+        if (filteredParts.isEmpty()){
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Error Dialog");
+            error.setContentText("Part not found");
+            error.showAndWait();}
+        return;
+
+
+        /*String input = partMainTxt.getText();
 
         int index = -1;
 
@@ -344,6 +399,6 @@ public class Main_Screen implements Initializable {
                 return;
 
             }
-        }
+        */
     }
 }
