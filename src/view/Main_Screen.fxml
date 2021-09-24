@@ -15,7 +15,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="344.0" layoutX="77.0" layoutY="138.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-height: 30px; -fx-arc-width: 30px;" width="421.0" />
       <TableView fx:id="partMainTableview" layoutX="113.0" layoutY="189.0" prefHeight="245.0" prefWidth="347.0">
         <columns>
-          <TableColumn fx:id="partIDMainCol" prefWidth="75.0" text="Product ID" />
+          <TableColumn fx:id="partIDMainCol" prefWidth="75.0" text="Part ID" />
           <TableColumn fx:id="partNameMainCol" prefWidth="75.0" text="Part Name" />
             <TableColumn fx:id="partInvMainCol" prefWidth="75.0" text="Inventory Level" />
             <TableColumn fx:id="partPriceMainCol" prefWidth="120.0" text="Price/ Cost per Unit" />

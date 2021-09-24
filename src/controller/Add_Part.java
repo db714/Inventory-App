@@ -17,6 +17,7 @@ public class Add_Part {
 
     Stage stage;
     Parent scene;
+    private static int next_ID = 1;
 
     @FXML
     private TextField addPartIDTxt;
@@ -125,7 +126,7 @@ public class Add_Part {
         try{
         //Parses the text fields and converts them to the appropriate primitive
             //TODO take away parsing and add static int
-        int id = Integer.parseInt(addPartIDTxt.getText());
+        int id = next_ID++;
         String name = addPartNameTxt.getText();
         int stock = Integer.parseInt(addPartInvTxt.getText());
         double price = Double.parseDouble(addPartPriceTxt.getText());

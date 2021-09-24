@@ -1,5 +1,8 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -127,6 +130,7 @@ public class Main_Screen implements Initializable {
 
         prodMainTableview.setItems(Inventory.getAllProducts());
 
+
         prodIDMainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         prodNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         prodInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -139,6 +143,8 @@ public class Main_Screen implements Initializable {
         partNameMainCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partInvMainCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partPriceMainCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+
 
 
 
@@ -275,9 +281,34 @@ public class Main_Screen implements Initializable {
 
     }
 
+    /*public ObservableList<Product> filter(String name){
+        for(Product x : Inventory.getAllProducts()){
+            if(x.getName().contains(name)){
+                Inventory.getFilteredProducts().add(x);
+            }
+
+        }
+        return Inventory.getFilteredProducts();
+
+    }*/
+
     @FXML
     void onActionProdSrch(ActionEvent event) {
-        String input = prodMainTxt.getText();
+    //made new obList to insert filtered items into and then  displayed new list on tableview
+      ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
+      String input = prodMainTxt.getText();
+      for(Product x : Inventory.getAllProducts()){
+          if(x.getName().contains(input) || Integer.toString(x.getId()).contains(input)){
+              filteredProducts.add(x);
+          }
+      }
+      prodMainTableview.setItems(filteredProducts);
+      return;
+
+
+
+
+        /*String input = prodMainTxt.getText();
 
         int index = -1;
 
@@ -285,13 +316,14 @@ public class Main_Screen implements Initializable {
             index++;
 
             //using '.equals()' to compare strings
-            if (x.getName().equals(input) || Integer.toString(x.getId()).equals(input)) {
-                prodMainTableview.getSelectionModel().select(x);
+            if (x.getName().contains(input) || Integer.toString(x.getId()).contains(input)) {
+                prodMainTableview.getSelectionModel();
+                        //select(x);
 
 
                 return;
             }
-        }
+        }*/
     }
 
 

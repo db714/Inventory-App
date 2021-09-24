@@ -12,7 +12,8 @@ import javax.swing.text.TableView;
 public class Inventory {
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
-
+    //private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
+   // private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
 
     public static void addProduct(Product product) {
         allProducts.add(product);
@@ -26,6 +27,17 @@ public class Inventory {
 
         return allProducts;
     }
+
+   /* public static ObservableList<Product> getFilteredProducts() {
+
+        return filteredProducts;
+    }
+
+    public static ObservableList<Part> getFilteredParts() {
+
+        return filteredParts;
+    }*/
+
 
     public static ObservableList<Part> getAllParts() {
         return allParts;
