@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Add_Part">
    <children>
-      <TextField fx:id="addPartIDTxt" layoutX="122.0" layoutY="103.0" onAction="#onActionPartID" disable="true" editable="false" promptText="Auto Gen - Disabled" />
+      <TextField fx:id="addPartIDTxt" disable="true" editable="false" layoutX="122.0" layoutY="103.0" onAction="#onActionPartID" promptText="Auto Gen - Disabled" />
       <TextField fx:id="addPartNameTxt" layoutX="122.0" layoutY="148.0" onAction="#onActionPartName" />
       <TextField fx:id="addPartInvTxt" layoutX="122.0" layoutY="188.0" onAction="#onActionPartInv" />
       <TextField fx:id="addPartPriceTxt" layoutX="122.0" layoutY="232.0" onAction="#onActionPartPrice" />
@@ -33,7 +33,7 @@
       <Label layoutX="72.0" layoutY="192.0" text="Inv" />
       <Label layoutX="53.0" layoutY="236.0" text="Price/Cost" />
       <Label layoutX="66.0" layoutY="276.0" text="Max" />
-      <Label fx:id="sourceLabel" layoutX="23.0" layoutY="314.0"  text="Machine ID"/>
+      <Label fx:id="sourceLabel" layoutX="23.0" layoutY="314.0" text="Machine ID" />
       <TextField fx:id="addPartMacIDTxt" layoutX="122.0" layoutY="310.0" onAction="#onActionPartMacID" />
       <Label layoutX="300.0" layoutY="236.0" text="Min" />
    </children>

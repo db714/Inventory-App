@@ -8,13 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Modify_Part">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <TextField fx:id="modPartIDTxt" layoutX="122.0" layoutY="103.0" onAction="#onActionmodPartID" disable="true" editable="false" promptText="Auto Gen - Disabled" />
+            <TextField fx:id="modPartIDTxt" disable="true" editable="false" layoutX="122.0" layoutY="103.0" onAction="#onActionmodPartID" promptText="Auto Gen - Disabled" />
             <TextField fx:id="modPartNameTxt" layoutX="122.0" layoutY="148.0" onAction="#onActionmodPartName" />
             <TextField fx:id="modPartInvTxt" layoutX="122.0" layoutY="188.0" onAction="#onActionmodPartInv" />
             <TextField fx:id="modPartPriceTxt" layoutX="122.0" layoutY="232.0" onAction="#onActionmodPartPrice" />
@@ -38,7 +36,7 @@
             <Label layoutX="72.0" layoutY="192.0" text="Inv" />
             <Label layoutX="53.0" layoutY="236.0" text="Price/Cost" />
             <Label layoutX="66.0" layoutY="276.0" text="Max" />
-            <Label layoutX="50.0" layoutY="314.0" text="Machine ID" />
+            <Label fx:id="modSourceLabel" layoutX="28.0" layoutY="314.0" text="Machine ID" />
             <TextField fx:id="modPartMacIDTxt" layoutX="122.0" layoutY="310.0" onAction="#onActionmodPartMacID" />
             <Label layoutX="300.0" layoutY="236.0" text="Min" />
          </children>

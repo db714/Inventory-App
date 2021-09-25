@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,9 +11,11 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 //TODO might need to change radio button labels for each fxml screen
-public class Modify_Part {
+public class Modify_Part implements Initializable {
 
     Stage stage;
     Parent scene;
@@ -54,6 +57,9 @@ public class Modify_Part {
     private TextField modPartMacIDTxt;
 
     @FXML
+    private Label modSourceLabel;
+
+    @FXML
     public void onActionmodPartCancel(javafx.event.ActionEvent actionEvent) throws IOException {
 
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -73,6 +79,8 @@ public class Modify_Part {
 
     @FXML
     public void onActionmodPartIH(ActionEvent event) {
+
+        modPartIHRB.setOnAction(value-> {modSourceLabel.setText("Machine ID");});
 
     }
 
@@ -104,6 +112,8 @@ public class Modify_Part {
     @FXML
     public void onActionmodPartOS(ActionEvent event) {
 
+        modPartOSRB.setOnAction(value-> {modSourceLabel.setText("Company Name");});
+
     }
 
     @FXML
@@ -123,23 +133,21 @@ public class Modify_Part {
             double price = Double.parseDouble(modPartPriceTxt.getText());
             int min = Integer.parseInt(modPartMinTxt.getText());
             int max = Integer.parseInt(modPartMaxTxt.getText());
-            int machineId = Integer.parseInt(modPartMacIDTxt.getText());
+            //int machineId = Integer.parseInt(modPartMacIDTxt.getText());
 
             //To make it easier, make variable names above match the object variable names
             if(rb == true){
-                System.out.println("in house worked");
-                machineId = Integer.parseInt(modPartMacIDTxt.getText());
+
+                int machineId = Integer.parseInt(modPartMacIDTxt.getText());
                 Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
-                System.out.println("in house modified");
-                System.out.println(modPartIHRB.isSelected());
+
             }
 
             if(rb == false){
-                System.out.println("this worked");
+
                 String companyName = modPartMacIDTxt.getText();
                 Inventory.updatePart(id, new Outsourced(id, name, stock, price, min, max, companyName));
-            System.out.println("outsourced modified");
-            System.out.println(modPartOSRB.isSelected());
+
             }
 
             //----This block of code takes you back to main after you input new object----
@@ -171,12 +179,29 @@ public class Modify_Part {
         modPartMinTxt.setText(String.valueOf(part.getMin()));
 
         if(part instanceof InHouse){
-            modPartMacIDTxt.setText(String.valueOf(((InHouse)part).getMachineId()));}
-
+            modPartMacIDTxt.setText(String.valueOf(((InHouse)part).getMachineId()));
+            modPartIHRB.setSelected(true);
+            modSourceLabel.setText("Machine ID");
+        }
 
         if(part instanceof Outsourced){
-        modPartMacIDTxt.setText(String.valueOf(((Outsourced)part).getCompanyName()));}
-
+        modPartMacIDTxt.setText(String.valueOf(((Outsourced)part).getCompanyName()));
+            modPartOSRB.setSelected(true);
+            modSourceLabel.setText("Company Name");
+        }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        modPartOSRB.setSelected(true);
+        modPartIHRB.setOnAction(value-> {modSourceLabel.setText("Machine ID");});
+        modPartIHRB.setSelected(false);
+        modPartOSRB.setSelected(true);
+        modPartOSRB.setOnAction(value-> {modSourceLabel.setText("Company Name");});
+        modPartIHRB.setSelected(false);
+        modPartIHRB.setSelected(true);
+        modPartMacIDTxt.setOnAction(value-> {modSourceLabel.setText("Company Name");});
+
+    }
 }

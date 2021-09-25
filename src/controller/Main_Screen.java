@@ -193,7 +193,8 @@ public class Main_Screen implements Initializable {
         //creating an instance for the second controller so methods can be used from that class
         Modify_Part modProdController = loader.getController();
         //sending selected items from the tableview to place in the modProd controller screen
-        modProdController.receivePart(partMainTableview.getSelectionModel().getSelectedItem());
+        Part p = partMainTableview.getSelectionModel().getSelectedItem();
+        modProdController.receivePart(p);
 
 
         //casting to the button on main

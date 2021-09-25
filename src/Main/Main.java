@@ -1,4 +1,4 @@
-package sample;
+package Main;
 
 
 import javafx.application.Application;
@@ -7,8 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.*;
-import org.w3c.dom.ls.LSOutput;
 
+/** This class creates an app that displays messages.*/
 public class Main extends Application {
 
     @Override
@@ -20,7 +20,7 @@ public class Main extends Application {
 
     }
 
-
+    /** This is the main method. This is the first method that gets called when you run your java program.*/
     public static void main(String[] args) {
         //Test product object
         Product product1 = new Product(1,"Toy", 3, 5.99, 1,2);
