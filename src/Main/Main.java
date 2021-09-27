@@ -8,7 +8,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.*;
 
-/** This class creates an app that displays messages.*/
+/** This class creates an app that displays messages.
+ * javadoc is located in C:\Users\dbfoc\Documents\JavaDoc
+ *
+ * RUNTIME ERROR: had problems saving specific associated parts with a certain product object.  I had to end up removing static from ass.Parts list and then making a second temp. list in the actual product pages so that it would attach that list to the product object.
+ *
+ * FUTURE ENHANCEMENT: upon using the search bar to find parts/products it would be more convenient to add a listener that automatically searches for the input upon typing it in instead of having to press ENTER after every input
+ * */
 public class Main extends Application {
 
     @Override
@@ -22,7 +28,7 @@ public class Main extends Application {
 
     /** This is the main method. This is the first method that gets called when you run your java program.*/
     public static void main(String[] args) {
-        //Test product object
+    /*    //Test product object
         Product product1 = new Product(1,"Toy", 3, 5.99, 1,2);
         Product product2 = new Product(5,"Car", 2, 34565.99, 1,7);
 
@@ -51,7 +57,7 @@ public class Main extends Application {
         //adding test assPart1 above to observable list
         //Product.addAssPart(part1);
 
-        //adding an allPart to assPart
+        //adding an allPart to assPart*/
 
 
         launch(args);

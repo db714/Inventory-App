@@ -12,37 +12,46 @@ import javax.swing.text.TableView;
 public class Inventory {
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
-    //private static ObservableList<Product> filteredProducts = FXCollections.observableArrayList();
-   // private static ObservableList<Part> filteredParts = FXCollections.observableArrayList();
 
+    /**
+     * addProduct method adds new product to products list
+     * @param product
+     */
     public static void addProduct(Product product) {
         allProducts.add(product);
     }
 
+    /**
+     * addPart method adds new part to parts list
+     * @param part
+     */
     public static void addPart(Part part) {
         allParts.add(part);
     }
 
+    /**
+     * getAllProducts method returns all product from list
+     * @return
+     */
     public static ObservableList<Product> getAllProducts() {
 
         return allProducts;
     }
 
-   /* public static ObservableList<Product> getFilteredProducts() {
 
-        return filteredProducts;
-    }
-
-    public static ObservableList<Part> getFilteredParts() {
-
-        return filteredParts;
-    }*/
-
-
+    /**
+     * getAllParts method returns all parts from list
+     * @return
+     */
     public static ObservableList<Part> getAllParts() {
         return allParts;
     }
 
+    /**
+     * updateProduct method updates product already in list
+     * @param id
+     * @param product
+     */
     public static void updateProduct(int id, Product product) {
 
         int index = -1;
@@ -67,7 +76,11 @@ public class Inventory {
     }
 
 
-
+    /**
+     * updatePart method updates part already in list
+     * @param id
+     * @param part
+     */
     public static void updatePart(int id, Part part) {
 
         int index = -1;
@@ -86,12 +99,20 @@ public class Inventory {
         }
     }
 
+    /**
+     * deleteProduct method deletes product from list
+     * @param product
+     */
     public static void deleteProduct(Product product){
 
         allProducts.remove(product);
 
     }
 
+    /**
+     * deletePart method deletes part from list
+     * @param part
+     */
     public static void deletePart(Part part){
 
         allParts.remove(part);

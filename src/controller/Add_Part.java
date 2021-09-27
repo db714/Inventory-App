@@ -60,6 +60,11 @@ public class Add_Part implements Initializable {
     @FXML
     private Label sourceLabel;
 
+    /**
+     * onActionPartCancel method disregards adding a new part and returns to main screen
+     * @param actionEvent user click cancel button
+     * @throws IOException
+     */
     @FXML
     public void onActionPartCancel(javafx.event.ActionEvent actionEvent) throws IOException {
 
@@ -78,6 +83,10 @@ public class Add_Part implements Initializable {
 
     }
 
+    /**
+     * onActionPartIH method changes source label to MachineID when InHouse radio button is clicked
+     * @param event user clicks InHouse button
+     */
     @FXML
     public void onActionPartIH(ActionEvent event) {
 
@@ -111,6 +120,10 @@ public class Add_Part implements Initializable {
 
     }
 
+    /**
+     * onActionPartOS method changes source label to Company Name when Outsource radio button is clicked
+     * @param event user clicks OutSource button
+     */
     @FXML
     public void onActionPartOS(ActionEvent event) {
 
@@ -124,6 +137,11 @@ public class Add_Part implements Initializable {
 
     }
 
+    /**
+     * onActionPartSave method saves new part and returns to main screen
+     * @param actionEvent user clicks save button error is thrown if fields are incorrect
+     * @throws IOException
+     */
     @FXML
     public void onActionPartSave(javafx.event.ActionEvent actionEvent) throws IOException {
 

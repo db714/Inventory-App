@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//TODO might need to change radio button labels for each fxml screen
+
 public class Modify_Part implements Initializable {
 
     Stage stage;
@@ -59,6 +59,12 @@ public class Modify_Part implements Initializable {
     @FXML
     private Label modSourceLabel;
 
+    /**
+     * onActionmodPartCancel method disregards changes made to part and returns to main screen
+     * @param actionEvent user clicks cancel button
+     * @throws IOException
+     */
+
     @FXML
     public void onActionmodPartCancel(javafx.event.ActionEvent actionEvent) throws IOException {
 
@@ -77,6 +83,10 @@ public class Modify_Part implements Initializable {
 
     }
 
+    /**
+     * onActionPartIH method sets modSourceLabel to Machine ID when IH radio button is clicked
+     * @param event user clicks InHouse radio button
+     */
     @FXML
     public void onActionmodPartIH(ActionEvent event) {
 
@@ -109,6 +119,10 @@ public class Modify_Part implements Initializable {
 
     }
 
+    /**
+     * onActionmodPartOS method sets modSourceLabel to Company Name when OS radio button is clicked
+     * @param event user click OS radio button
+     */
     @FXML
     public void onActionmodPartOS(ActionEvent event) {
 
@@ -121,6 +135,11 @@ public class Modify_Part implements Initializable {
 
     }
 
+    /**
+     * onActionmodPartSave method saves changes made to part and returns to main screen
+     * @param actionEvent user clicks save button error is thrown if fields are incorrect
+     * @throws IOException
+     */
     @FXML
     public void onActionmodPartSave(javafx.event.ActionEvent actionEvent) throws IOException {
         boolean rb = modPartIHRB.isSelected();
@@ -169,6 +188,10 @@ public class Modify_Part implements Initializable {
         }
     }
 
+    /**
+     * receivePart method sets part variables into text fields
+     * @param part
+     */
     public void receivePart(Part part){
         //Getting different value getters and placing them inside text fields (sometimes converting ints to strings)
         modPartIDTxt.setText(String.valueOf(part.getId()));

@@ -151,6 +151,11 @@ public class Main_Screen implements Initializable {
 
     }
 
+    /**
+     * onActionPartAdd method loads addPart page
+     * @param actionEvent user clicks add button
+     * @throws IOException
+     */
     public void onActionPartAdd(javafx.event.ActionEvent actionEvent) throws IOException {
 
         stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -162,11 +167,19 @@ public class Main_Screen implements Initializable {
         stage.show();
     }
 
+    /**
+     * onActionMainExit method exits the application
+     * @param actionEvent user clicks exit button
+     */
     public void onActionMainExit(ActionEvent actionEvent) {
 
         System.exit(0);
     }
 
+    /**
+     * onActionPartDel method deletes part specified
+     * @param actionEvent user clicks delete button error is thrown if nothing is selected
+     */
     public void onActionPartDel(ActionEvent actionEvent) {
 
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
@@ -181,7 +194,11 @@ public class Main_Screen implements Initializable {
         }
     }
 
-
+    /**
+     * onActionPartMod method modifies part specified
+     * @param actionEvent user clicks modify button error is thrown if nothing is selected
+     * @throws IOException
+     */
     public void onActionPartMod(ActionEvent actionEvent) throws IOException {
     try {
         //to use loader() methods you must first instantiate
@@ -218,6 +235,10 @@ public class Main_Screen implements Initializable {
 
     }
 
+    /**
+     * onActionProdDel method deletes product specified
+     * @param actionEvent user clicks Delete button error is thrown if nothing specified
+     */
     public void onActionProdDel(ActionEvent actionEvent) {
         Product selectedProduct = prodMainTableview.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -246,6 +267,11 @@ public class Main_Screen implements Initializable {
         }
     }
 
+    /**
+     * onActionProdAdd loads addProduct page
+     * @param actionEvent user click add button
+     * @throws IOException
+     */
     public void onActionProdAdd(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader loaderAdd = new FXMLLoader();
@@ -268,6 +294,11 @@ public class Main_Screen implements Initializable {
 
     }
 
+    /**
+     * onActionProdMod method loads modifyProduct page so that product selected can be modified
+     * @param actionEvent user clicks modify error is thrown if nothing selected
+     * @throws IOException
+     */
     public void onActionProdMod(ActionEvent actionEvent) throws IOException {
         try {
             //to use loader() methods you must first instantiate
@@ -322,6 +353,10 @@ public class Main_Screen implements Initializable {
 
     }*/
 
+    /**
+     * onActionProdSrch method uses search bar to find products contained in table
+     * @param event user types either ID or name error is displayed if nothing found
+     */
     @FXML
     void onActionProdSrch(ActionEvent event) {
     //made new obList to insert filtered items into and then  displayed new list on tableview
@@ -363,7 +398,10 @@ public class Main_Screen implements Initializable {
         }*/
     }
 
-
+    /**
+     * onActionPartSrch method uses search bar to find products contained in table
+     * @param event user types either ID or name error is displayed if nothing found
+     */
     @FXML
     void onActionPartSrch(ActionEvent event) {
 

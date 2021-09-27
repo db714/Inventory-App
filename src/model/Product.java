@@ -8,15 +8,26 @@ import javafx.collections.ObservableList;
  * @author Place Your Name Here
  */
 public class Product {
-    //TODO changed ob list from static
+
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
-    //private static int next_id = 0;
+
     private int id;
     private String name;
     private double price;
     private int stock;
     private int min;
     private int max;
+
+
+    /***
+     * Product constructor
+     * @param id product id
+     * @param name product name
+     * @param price product price
+     * @param stock inventory of product
+     * @param min product minimum in inventory
+     * @param max product maximum in inventory
+     */
 
     public Product(int id, String name, int stock, double price, int min, int max) {
         this.id = id;
@@ -114,13 +125,19 @@ public class Product {
         this.max = max;
     }
 
-
+    /**
+     * Adds part to associated part
+     * @param part
+     */
     public void addAssPart(Part part){
-    //TODO removed static from this function
+
         this.associatedParts.add(part);
     }
 
-    //TODO removed static from this function
+    /**
+     *
+     * @return associatedParts
+     */
     public ObservableList<Part> getAssParts(){
 
         return associatedParts;
@@ -131,8 +148,7 @@ public class Product {
 
    }
 
-   /*public deleteAssociatedPart(){
-     boolean ;}*/
+
 
 
 

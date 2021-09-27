@@ -101,18 +101,37 @@ public class Add_Product implements Initializable {
         //addProdSlctPartTable.setItems(product.getAssParts());
     }
 
+    /***
+     * OnActionAddProdAdd method adds a part to the associated parts table.
+     * @param event user clicks the add button.
+     */
     @FXML
     void onActionAddProdAdd(ActionEvent event) {
-        //TODO changed the class to an instance operation
         Part selectedPart = addProdPartTable.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+
+        if(selectedPart != null){
         associatedPartsList.add(selectedPart);
+        }
         //product.addAssPart(addProdPartTable.getSelectionModel().getSelectedItem());
 
+        if(selectedPart == null){
+
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Must select part to add");
+            alert.showAndWait();
+        }
     }
 
 
 
-
+    /***
+     * OnActionAddProdCancel method closes the scene, returning user to the Main Screen.
+     * @param actionEvent user clicks the cancel button.
+     * @throws IOException possible exception.
+     */
     @FXML
     void onActionAddProdCncl(javafx.event.ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -155,6 +174,10 @@ public class Add_Product implements Initializable {
 
     }
 
+    /**
+     * onActonAddProdRmv method removes associated part from table
+     * @param event
+     */
     @FXML
     void onActionAddProdRmv(ActionEvent event) {
 
@@ -174,6 +197,11 @@ public class Add_Product implements Initializable {
 
     }
 
+    /**
+     * onActionAddProdSave method saves new product object and returns to main screen
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     void onActionAddProdSave(javafx.event.ActionEvent actionEvent) throws IOException {
 
@@ -245,6 +273,10 @@ public class Add_Product implements Initializable {
 
     }
 
+    /**
+     * onActionAddProdSrch method uses search bar to find an item contained in parts table either by ID or Name
+     * @param event
+     */
     @FXML
     void onActionAddProdSrch(ActionEvent event) {
 
@@ -267,7 +299,9 @@ public class Add_Product implements Initializable {
 
     }
 
-
+    /**
+     * receiveTableTwo method sends information to populate all parts table on addProduct page
+     */
     public void receiveTableTwo(){
         addProdPartTable.setItems(Inventory.getAllParts());
 
@@ -277,8 +311,11 @@ public class Add_Product implements Initializable {
         addProdPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+    /**
+     * receiveSlctTable method sends information to populate associated parts table on addProduct page
+     */
     public void receiveSlctTable(){
-//TODO changed the class to an instance operation
+//
 
         //addProdSlctPartTable.setItems(Product.getAssParts());
         addProdSlctPartTable.setItems(associatedPartsList);

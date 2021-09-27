@@ -89,16 +89,34 @@ public class Modify_Product implements Initializable {
     @FXML
     private TableColumn<Part, Double> modProdAssPPrideCol;
 
+    /**
+     * onActionModProAdd method adds part to selected part table
+     * @param event user clicks add button
+     */
     @FXML
     void onActionModProAdd(ActionEvent event) {
-//TODO changed the class to an instance operation
+
         Part selectedPart = modProSlctTable.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        if(selectedPart != null){
         associatedPartsList.add(selectedPart);
+        }
+
+        if(selectedPart == null){alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Must select part to add");
+            alert.showAndWait();}
 
 
 
     }
 
+    /**
+     * onActionModProCncl method disregards changes made to product and returns to main screen
+     * @param actionEvent user clicks cancel button
+     * @throws IOException
+     */
     @FXML
     void onActionModProCncl(javafx.event.ActionEvent actionEvent) throws IOException {
 
@@ -142,6 +160,10 @@ public class Modify_Product implements Initializable {
 
     }
 
+    /**
+     * onActionModProRmv method removes associated part from table
+     * @param event user click remove button
+     */
     @FXML
     void onActionModProRmv(ActionEvent event) {
         Part selectedPart = modProdAssPTable.getSelectionModel().getSelectedItem();
@@ -160,6 +182,11 @@ public class Modify_Product implements Initializable {
 
     }
 
+    /**
+     * onActionModProSave method saves changes to product object and returns to main screen
+     * @param actionEvent user clicks save button error is thrown in fields have incorrect values
+     * @throws IOException
+     */
     @FXML
     void onActionModProSave(javafx.event.ActionEvent actionEvent) throws IOException {
 
@@ -234,6 +261,10 @@ public class Modify_Product implements Initializable {
 
     }
 
+    /**
+     * onActionModProSearch method uses search bar to find parts listed in parts table
+     * @param event uses inputs ID or Name to find match error is thrown if no match
+     */
     @FXML
     void onActionModProSearch(ActionEvent event) {
 
@@ -256,6 +287,10 @@ public class Modify_Product implements Initializable {
 
     }
 
+    /**
+     * receiveProduct method loads product variables into text fields
+     * @param product
+     */
     public void receiveProduct(Product product){
         //Getting different value getters and placing them inside text fields (sometimes converting ints to strings)
         modProIDTxt.setText(String.valueOf(product.getId()));
@@ -266,6 +301,9 @@ public class Modify_Product implements Initializable {
         modProMinTxt.setText(String.valueOf(product.getMin()));
     }
 
+    /**
+     * receiveTable loads all parts into table
+     */
     public void receiveTable(){
         modProSlctTable.setItems(Inventory.getAllParts());
 
@@ -275,8 +313,12 @@ public class Modify_Product implements Initializable {
         modProSlctPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+    /**
+     * receiveModSlctTable loads associated parts into table
+     * @param product
+     */
     public void receiveModSlctTable(Product product){
-        //TODO changed the class to an instance operation
+
         Product p = product;
         modProdAssPTable.setItems(p.getAssParts());
 
@@ -293,9 +335,8 @@ public class Modify_Product implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //TODO parameter for this in not right
-        //associatedPartsList = getAssParts();
-        //modProdAssPTable.setItems(getAssParts());
+
+
     }
 
 
