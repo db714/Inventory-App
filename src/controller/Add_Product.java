@@ -24,7 +24,7 @@ public class Add_Product implements Initializable {
     Stage stage;
     Parent scene;
     private static int next_ID = 1;
-    //TODO added this list to add product
+
     //private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private ObservableList<Part> associatedPartsList = FXCollections.observableArrayList();
 
@@ -222,7 +222,7 @@ public class Add_Product implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText("Error");
 
-            //TODO something needs to go here that actually saves the associated parts table to the associated parts list
+
             if (Integer.parseInt(addProdMaxTxt.getText()) < Integer.parseInt(addProdMinTxt.getText())) {
                 alert.setContentText("Max value cannot be less than Min value!");
                 alert.showAndWait();

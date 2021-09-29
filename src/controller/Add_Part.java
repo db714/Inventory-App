@@ -158,17 +158,42 @@ public class Add_Part implements Initializable {
 
 
         //To make it easier, make variable names above match the object variable names
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
 
-        if(addPartIHRB.isSelected() == true){
-            System.out.println("in house worked");
-            int machineId = Integer.parseInt(addPartMacIDTxt.getText());
-        Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));
+
+            if (Integer.parseInt(addPartMaxTxt.getText()) < Integer.parseInt(addPartMinTxt.getText())) {
+                alert.setContentText("Max value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(addPartInvTxt.getText()) > Integer.parseInt(addPartMaxTxt.getText())) {
+                alert.setContentText("Inventory value cannot be greater than Max value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(addPartInvTxt.getText()) < Integer.parseInt(addPartMinTxt.getText())) {
+                alert.setContentText("Inventory value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
             }
 
-        if(addPartOSRB.isSelected() == true){
-            System.out.println("this worked");
-            String companyName = addPartMacIDTxt.getText();
-            Inventory.addPart(new Outsourced(id, name, stock, price, min, max, companyName));}
+
+
+         else{
+                if (addPartIHRB.isSelected() == true) {
+                    System.out.println("in house worked");
+                    int machineId = Integer.parseInt(addPartMacIDTxt.getText());
+                    Inventory.addPart(new InHouse(id, name, stock, price, min, max, machineId));
+                }
+
+                if (addPartOSRB.isSelected() == true) {
+                    System.out.println("this worked");
+                    String companyName = addPartMacIDTxt.getText();
+                    Inventory.addPart(new Outsourced(id, name, stock, price, min, max, companyName));
+                }
+            }
 
 
         //----This block of code takes you back to main after you input new object----

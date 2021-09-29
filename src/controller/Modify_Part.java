@@ -155,18 +155,43 @@ public class Modify_Part implements Initializable {
             //int machineId = Integer.parseInt(modPartMacIDTxt.getText());
 
             //To make it easier, make variable names above match the object variable names
-            if(rb == true){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
 
-                int machineId = Integer.parseInt(modPartMacIDTxt.getText());
-                Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
 
+            if (Integer.parseInt(modPartMaxTxt.getText()) < Integer.parseInt(modPartMinTxt.getText())) {
+                alert.setContentText("Max value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(modPartInvTxt.getText()) > Integer.parseInt(modPartMinTxt.getText())) {
+                alert.setContentText("Inventory value cannot be greater than Max value!");
+                alert.showAndWait();
+                return;
+            }
+            if (Integer.parseInt(modPartIDTxt.getText()) < Integer.parseInt(modPartMinTxt.getText())) {
+                alert.setContentText("Inventory value cannot be less than Min value!");
+                alert.showAndWait();
+                return;
             }
 
-            if(rb == false){
 
-                String companyName = modPartMacIDTxt.getText();
-                Inventory.updatePart(id, new Outsourced(id, name, stock, price, min, max, companyName));
 
+            else{
+                if (rb == true) {
+
+                    int machineId = Integer.parseInt(modPartMacIDTxt.getText());
+                    Inventory.updatePart(id, new InHouse(id, name, stock, price, min, max, machineId));
+
+                }
+
+                if (rb == false) {
+
+                    String companyName = modPartMacIDTxt.getText();
+                    Inventory.updatePart(id, new Outsourced(id, name, stock, price, min, max, companyName));
+
+                }
             }
 
             //----This block of code takes you back to main after you input new object----

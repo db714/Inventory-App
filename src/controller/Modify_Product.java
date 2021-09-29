@@ -208,7 +208,7 @@ public class Modify_Product implements Initializable {
             alert.setTitle("Error");
             alert.setHeaderText("Error");
 
-            //TODO something needs to go here that actually saves the associated parts table to the associated parts list
+
             if (Integer.parseInt(modProMaxTxt.getText()) < Integer.parseInt(modProMinTxt.getText())) {
                 alert.setContentText("Max value cannot be less than Min value!");
                 alert.showAndWait();
